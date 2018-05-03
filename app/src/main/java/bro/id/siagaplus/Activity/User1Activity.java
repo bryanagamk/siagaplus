@@ -1,11 +1,8 @@
 package bro.id.siagaplus.Activity;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +35,8 @@ public class User1Activity extends AppCompatActivity {
             public void onClick(View v) {
                 final String valueNama = editText.getText().toString();
                 Toast.makeText(User1Activity.this, "Halo, Ibu " + valueNama, Toast.LENGTH_SHORT).show();
-                mDBHelper.insertUser(valueNama);
+                Intent intent = new Intent(User1Activity.this, User11Activity.class);
+                startActivity(intent);
             }
         });
 

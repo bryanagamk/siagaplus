@@ -6,52 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ArtikelActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-
-        android:background="#fab0b3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <Button
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_menu_white_24dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="K"
-                android:textColor="@android:color/white"
-                android:textSize="30dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="S+"
-                android:textColor="@android:color/white"
-                android:textSize="30dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
@@ -59,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:srcCompat="@color/colorPrimary"
+        app:srcCompat="@color/colorPrimaryDark"
         android:contentDescription="Description" />
 
     <ListView
