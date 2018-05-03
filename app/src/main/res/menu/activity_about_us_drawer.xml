@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/agenda"
+            android:icon="@drawable/ic_agenda_24dp"
+            android:title="Agenda" />
+        <item
+            android:id="@+id/checklist"
+            android:icon="@drawable/ic_checklist_24dp"
+            android:title="Check List" />
+        <item
+            android:id="@+id/artikel"
+            android:icon="@drawable/ic_artikel_24dp"
+            android:title="Article" />
+
+    </group>
+
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/setting"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="Setting" />
+            <item
+                android:id="@+id/aboutus"
+                android:icon="@drawable/ic_about_us_24dp"
+                android:title="About Us" />
+        </menu>
+    </item>
+
+</menu>
