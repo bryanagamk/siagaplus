@@ -1,9 +1,7 @@
-package bro.id.siagaplus;
+package bro.id.siagaplus.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import bro.id.siagaplus.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -83,10 +83,17 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             // Handle the camera action
         } else if (id == R.id.agenda) {
+            Intent intent = new Intent(this, AgendaActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.checklist) {
 
+            Intent intent = new Intent(this, ChecklistActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.artikel) {
+            Intent intent = new Intent(this, ArtikelActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.aboutus) {
 
