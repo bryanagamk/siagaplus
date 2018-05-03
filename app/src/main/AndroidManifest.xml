@@ -16,16 +16,19 @@
         <activity android:name=".Activity.HomeActivity" />
         <activity android:name=".Activity.User1Activity" />
         <activity android:name=".Activity.User2Activity">
+
+        </activity>
+        <activity android:name=".Activity.User3Activity" />
+        <activity android:name=".Activity.ArtikelActivity" />
+        <activity android:name=".Activity.ContentArticleActivity" />
+        <activity android:name=".Activity.CongratsActivity" />
+        <activity android:name=".Activity.AgendaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.User3Activity" />
-        <activity android:name=".Activity.ArtikelActivity" />
-        <activity android:name=".Activity.ContentArticleActivity" />
-        <activity android:name=".Activity.CongratsActivity"></activity>
     </application>
 
 </manifest>
