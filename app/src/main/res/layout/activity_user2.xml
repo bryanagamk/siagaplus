@@ -74,4 +74,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/buttonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        tools:layout_editor_absoluteX="254dp"
+        tools:layout_editor_absoluteY="256dp" />
+
 </android.support.constraint.ConstraintLayout>

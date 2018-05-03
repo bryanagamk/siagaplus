@@ -1,5 +1,6 @@
 package bro.id.siagaplus.Activity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -13,8 +14,9 @@ import bro.id.siagaplus.R;
 
 public class User2Activity extends AppCompatActivity {
 
-    private DatabaseHelper db;
-    User user;
+    public static final String DATABASE_NAME = "siagaplus_db";
+
+    SQLiteDatabase mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +24,7 @@ public class User2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_user2);
 
         TextView textView = (TextView) findViewById(R.id.kapan);
-        String nama = user.getName();
-        String txt = "Kapan \n Terakhir kali\n Ibu" + nama + "mengalami Haid?";
-        textView.setText(txt);
+
 
     }
 }
