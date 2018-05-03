@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.home_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbars);
+        setSupportActionBar(toolbar);
+
         listData = new ArrayList<>();
 //        arrayList = new ArrayList<>();
         listbulan = new ArrayList<>();

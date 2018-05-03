@@ -1,14 +1,13 @@
 package bro.id.siagaplus.Activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
 import com.github.tibolte.agendacalendarview.models.DayItem;
 
-import java.security.AlgorithmParameterGenerator;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
