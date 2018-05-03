@@ -13,13 +13,13 @@ import android.view.MenuItem;
 
 import bro.id.siagaplus.R;
 
-public class CheckListActivity extends AppCompatActivity
+public class SettingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_list);
+        setContentView(R.layout.activity_setting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,7 +46,7 @@ public class CheckListActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.check_list, menu);
+        getMenuInflater().inflate(R.menu.setting, menu);
         return true;
     }
 

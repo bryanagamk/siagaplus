@@ -122,14 +122,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            // Handle the camera action
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.checklist) {
 
-            Intent intent = new Intent(this, ChecklistActivity.class);
+            Intent intent = new Intent(this, CheckListActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.artikel) {
@@ -137,8 +138,12 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.aboutus) {
+            Intent intent = new Intent(this, AboutUsActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.setting) {
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivity(intent);
 
         }
 
