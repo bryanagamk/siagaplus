@@ -1,113 +1,86 @@
 package bro.id.siagaplus.Activity;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import bro.id.siagaplus.Adapter.AgendaAdapter;
-import bro.id.siagaplus.Adapter.BulanAdapter;
-import bro.id.siagaplus.Adapter.ChecklistAdapter;
-import bro.id.siagaplus.Model.Agenda;
-import bro.id.siagaplus.Model.Bulan;
-import bro.id.siagaplus.Model.Checklist;
+import bro.id.siagaplus.Fragment.EightFragment;
+import bro.id.siagaplus.Fragment.FiveFragment;
+import bro.id.siagaplus.Fragment.FourFragment;
+import bro.id.siagaplus.Fragment.NineFragment;
+import bro.id.siagaplus.Fragment.OneFragment;
+import bro.id.siagaplus.Fragment.SevenFragment;
+import bro.id.siagaplus.Fragment.SixFragment;
+import bro.id.siagaplus.Fragment.TenFragment;
+import bro.id.siagaplus.Fragment.ThreeFragment;
+import bro.id.siagaplus.Fragment.TwoFragment;
 import bro.id.siagaplus.R;
 
 public class HomeActivity extends AppCompatActivity {
-    RecyclerView rvAgenda,rvchecklist,rvbulan;
-    ArrayList<Agenda> listData;
-    ArrayList<Checklist> arrayList;
-    ArrayList<Bulan> listbulan;
 
-    AgendaAdapter adapterAgenda;
-    BulanAdapter adapterBulan;
-    ChecklistAdapter adapterChecklist;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        listData = new ArrayList<>();
-//        arrayList = new ArrayList<>();
-        listbulan = new ArrayList<>();
+        setContentView(R.layout.home_layout);
 
-//        adapterAgenda = new AgendaAdapter(getApplicationContext(),listData);
-//        adapterChecklist = new ChecklistAdapter(getApplicationContext(),arrayList);
-        adapterBulan = new BulanAdapter(getApplicationContext(),listbulan);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_home);
+        setupViewPager(viewPager);
 
-//        rvAgenda = (RecyclerView) findViewById(R.id.rv_agenda);
-//        rvchecklist = (RecyclerView) findViewById(R.id.rv_checklist);
-        rvbulan = (RecyclerView) findViewById(R.id.rv_bulan);
-//        LinearLayoutManager llmAgenda = new LinearLayoutManager(this);
-//        llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
-//        LinearLayoutManager llmChecklist = new LinearLayoutManager(this);
-//        llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
-        LinearLayoutManager llmBulan = new LinearLayoutManager(getApplicationContext());
-        llmBulan.setOrientation(LinearLayoutManager.HORIZONTAL);
-        llmBulan.setReverseLayout(false);
-
-
-//        rvAgenda.setLayoutManager(llmAgenda);
-//        rvchecklist.setLayoutManager(llmChecklist);
-        rvbulan.setLayoutManager(llmBulan);
-//
-//        rvAgenda.setAdapter(adapterAgenda);
-//        rvchecklist.setAdapter(adapterChecklist);
-        rvbulan.setAdapter(adapterBulan);
-        bulanInitator();
-//        getDataAgenda();
-//        getDataChecklist();
-        rvbulan.setHasFixedSize(true);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    private void bulanInitator(){
-        Bulan bulan = new Bulan("belum hamil",0);
-        listbulan.add(bulan);
-        bulan = new Bulan("1 BLN",1);
-        listbulan.add(bulan);
-        bulan = new Bulan("2 BLN",2);
-        listbulan.add(bulan);
-        bulan = new Bulan("3 BLN",3);
-        listbulan.add(bulan);
-        bulan = new Bulan("4 BLN",4);
-        listbulan.add(bulan);
-        bulan = new Bulan("5 BLN",5);
-        listbulan.add(bulan);
-        bulan = new Bulan("6 BLN",6);
-        listbulan.add(bulan);
-        bulan = new Bulan("7 BLN",7);
-        listbulan.add(bulan);
-        bulan = new Bulan("8 BLN",8);
-        listbulan.add(bulan);
-        bulan = new Bulan("9 BLN",9);
-        listbulan.add(bulan);
-        bulan = new Bulan("Sudah lahir",10);
-        listbulan.add(bulan);
-        adapterBulan.notifyDataSetChanged();
-
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new OneFragment(), "ONE");
+        adapter.addFragment(new TwoFragment(), "TWO");
+        adapter.addFragment(new ThreeFragment(), "THREE");
+        adapter.addFragment(new FourFragment(), "FOUR");
+        adapter.addFragment(new FiveFragment(), "FIVE");
+        adapter.addFragment(new SixFragment(), "SIX");
+        adapter.addFragment(new SevenFragment(), "SEVEN");
+        adapter.addFragment(new EightFragment(), "EIGHT");
+        adapter.addFragment(new NineFragment(), "NINE");
+        adapter.addFragment(new TenFragment(), "TEN");
+        viewPager.setAdapter(adapter);
     }
 
-    private void getDataAgenda(){
-        Agenda agenda = new Agenda("28/10/2018","10.00am","kontrol gigi");
-        listData.add(agenda);
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        agenda = new Agenda("30/10/2018","11.00am","ngesing");
-        listData.add(agenda);
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
 
-        adapterAgenda.notifyDataSetChanged();
-    }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
 
-    private void getDataChecklist(){
-        Checklist checklist = new Checklist("sikat gigi",false);
-        arrayList.add(checklist);
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
 
-        checklist = new Checklist("ngising",false);
-        arrayList.add(checklist);
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
 
-        checklist = new Checklist("cak nan",false);
-        arrayList.add(checklist);
-
-        adapterChecklist.notifyDataSetChanged();
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }
