@@ -9,4 +9,11 @@
     <color name="orange_dark">#f39c12</color>
     <color name="yellow">#f1c40f</color>
     <color name="blue_dark">#2980b9</color>
+    <color name="colorPrimaryNote">#455399</color>
+    <color name="colorPrimaryDarkNote">#455399</color>
+    <color name="colorAccentNote">#00c6ae</color>
+    <color name="msg_no_notes">#999</color>
+    <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="timestamp">#858585</color>
+    <color name="note_list_text">#232323</color>
 </resources>

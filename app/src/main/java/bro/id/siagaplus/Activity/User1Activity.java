@@ -8,17 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import bro.id.siagaplus.Helper.DatabaseHelper;
-import bro.id.siagaplus.Model.User;
 import bro.id.siagaplus.R;
 
 public class User1Activity extends AppCompatActivity {
 
     private DatabaseHelper db;
-    private List<User> userList = new ArrayList<>();
+//    private List<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -46,11 +46,6 @@
             android:label="@string/title_activity_check_list"
             android:theme="@style/AppTheme" />
 
-        <provider
-            android:name=".Controller.NotesContentProvider"
-            android:authorities="com.amazonaws.mobile.samples.mynotes.provider"
-            android:label="NotesProvider" />
-
         <activity
             android:name=".Activity.NoteActivity"
             android:label="@string/title_activity_note"
