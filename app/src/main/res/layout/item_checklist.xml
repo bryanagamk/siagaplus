@@ -4,9 +4,8 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@drawable/ic_rounded_rectangle_white"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
+        android:background="@android:color/white"
         >
         <TextView
             android:id="@+id/item_nama_checklist"
@@ -14,9 +13,9 @@
             android:layout_height="wrap_content"
             android:text="memakai benang gigi"
             android:layout_centerVertical="true"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:layout_marginLeft="10dp"
-            android:textColor="#000"
+            android:textColor="#cc000000"
             android:textStyle="bold"
             />
 
