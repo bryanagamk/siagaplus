@@ -3,6 +3,7 @@ package bro.id.siagaplus.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,6 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -29,6 +32,8 @@ import bro.id.siagaplus.Adapter.NotesAdapter;
 import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Note;
 import bro.id.siagaplus.R;
+import bro.id.siagaplus.Utils.MyDividerItemDecoration;
+import bro.id.siagaplus.Utils.RecyclerTouchListener;
 
 public class NoteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,7 +44,7 @@ public class NoteActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private TextView noNotesView;
 
-    public DatabaseHelper db;
+    private DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,14 @@ public class NoteActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        coordinatorLayout = findViewById(R.id.coordinator_layout);
+        recyclerView = findViewById(R.id.recycler_view);
+        noNotesView = findViewById(R.id.empty_notes_view);
+
+        db = new DatabaseHelper(this);
+
+        notesList.addAll(db.getAllNotes());
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +68,33 @@ public class NoteActivity extends AppCompatActivity
                 showNoteDialog(false, null, -1);
             }
         });
+
+        mAdapter = new NotesAdapter(this, notesList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
+        recyclerView.setAdapter(mAdapter);
+
+        toggleEmptyNotes();
+
+        /**
+         * On long press on RecyclerView item, open alert dialog
+         * with options to choose
+         * Edit and Delete
+         * */
+
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this,
+                recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, final int position) {
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+                showActionsDialog(position);
+            }
+        }));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,7 +139,7 @@ public class NoteActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
