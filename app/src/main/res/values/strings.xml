@@ -14,4 +14,6 @@
     <string name="title_activity_setting">SettingActivity</string>
     <string name="title_activity_artikel">ArtikelActivity</string>
     <string name="title_activity_check_list">CheckListActivity</string>
+    <string name="title_activity_note">NoteActivity</string>
+    <string name="title_activity_note_detail">NoteDetailActivity</string>
 </resources>

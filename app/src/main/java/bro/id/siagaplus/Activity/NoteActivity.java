@@ -1,8 +1,9 @@
 package bro.id.siagaplus.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,18 +11,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import bro.id.siagaplus.R;
 
-public class AboutUsActivity extends AppCompatActivity
+public class NoteActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_us);
+        setContentView(R.layout.activity_note);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,7 +57,7 @@ public class AboutUsActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.about_us, menu);
+        getMenuInflater().inflate(R.menu.note, menu);
         return true;
     }
 
@@ -71,29 +82,17 @@ public class AboutUsActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.agenda) {
-            Intent intent = new Intent(this, AgendaActivity.class);
-            startActivity(intent);
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.checklist) {
+        } else if (id == R.id.nav_slideshow) {
 
-            Intent intent = new Intent(this, CheckListActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.artikel) {
-            Intent intent = new Intent(this, ArtikelActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.aboutus) {
-            Intent intent = new Intent(this, AboutUsActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.setting) {
-            Intent intent = new Intent(this, SettingActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_send) {
 
         }
 

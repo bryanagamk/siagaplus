@@ -124,6 +124,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        } else if (id == R.id.notes) {
+            Intent intent = new Intent(this, NoteActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
             startActivity(intent);
