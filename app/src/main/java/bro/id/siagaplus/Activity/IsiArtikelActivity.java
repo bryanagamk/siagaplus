@@ -7,13 +7,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import bro.id.siagaplus.R;
 
 public class IsiArtikelActivity extends AppCompatActivity {
 
     WebView webView;
-    String url = "file:///android_asset/catin.html";
+    String url = "file:///android_asset/";
+    String namaArtikel, namaMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +23,17 @@ public class IsiArtikelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_isi_artikel);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        TextView tvTitle = findViewById(R.id.tvTitle);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_ATOP);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        namaArtikel = getIntent().getStringExtra("namaArtikel");
+        namaMenu = getIntent().getStringExtra("namaMenu");
+
+        tvTitle.setText(namaMenu);
 
         webView = findViewById(R.id.webView1);
 
@@ -41,6 +49,6 @@ public class IsiArtikelActivity extends AppCompatActivity {
         // Baris di bawah untuk menambahkan scrollbar di dalam WebView-nya
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl(url);
+        webView.loadUrl(url+namaArtikel);
     }
 }
