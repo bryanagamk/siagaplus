@@ -4,16 +4,15 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@drawable/ic_rounded_rectangle_white"
+        android:background="#ffffff"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         >
         <TextView
             android:id="@+id/item_tanggal_agenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="28/07/2018"
-            android:textSize="18dp"
+            android:textSize="12dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
             android:textColor="#000"
@@ -25,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="10.00am"
             android:textStyle="bold"
-            android:textSize="18dp"
+            android:textSize="12dp"
             android:textColor="#fab0b3"
             android:layout_below="@id/item_tanggal_agenda"
             android:layout_marginLeft="20dp"
@@ -37,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="kontrol gigi"
-            android:textSize="18dp"
+            android:textSize="14dp"
             android:textStyle="bold"
             android:drawableRight="@drawable/ic_notifications_active_black_24dp"
             android:drawablePadding="10dp"

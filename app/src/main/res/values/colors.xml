@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fab0b3</color>
-    <color name="colorPrimaryDark">#b7e6ef</color>
-    <color name="colorAccent">#8b8b8b</color>
-    <color name="colorPink">#fab0b3</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorPrimary">#ccfab0b3</color>
+    <color name="colorPrimaryDark">#cca2d9ed</color>
+    <color name="colorAccent">#cc8b8b8b</color>
+    <color name="colorPink">#ccfab0b3</color>
+    <color name="colorBlueText">#cc62a4ec</color>
+    <color name="applevaley">#ea8685</color>
+    <color name="pencil">#596275</color>
+    <color name="rosy">#f7d794</color>
     <color name="orange_dark">#f39c12</color>
     <color name="yellow">#f1c40f</color>
     <color name="blue_dark">#2980b9</color>
+    <color name="colorPrimaryNote">#455399</color>
+    <color name="colorPrimaryDarkNote">#455399</color>
+    <color name="colorAccentNote">#00c6ae</color>
+    <color name="msg_no_notes">#999</color>
+    <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="timestamp">#858585</color>
+    <color name="note_list_text">#232323</color>
 </resources>

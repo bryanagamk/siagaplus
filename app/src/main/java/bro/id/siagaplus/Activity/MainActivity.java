@@ -70,16 +70,11 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
-        adapter.addFragment(new FourFragment(), "FOUR");
-        adapter.addFragment(new FiveFragment(), "FIVE");
-        adapter.addFragment(new SixFragment(), "SIX");
-        adapter.addFragment(new SevenFragment(), "SEVEN");
-        adapter.addFragment(new EightFragment(), "EIGHT");
-        adapter.addFragment(new NineFragment(), "NINE");
-        adapter.addFragment(new TenFragment(), "TEN");
+        adapter.addFragment(new OneFragment(), "Belum Hamil");
+        adapter.addFragment(new TwoFragment(), "Trimester 1");
+        adapter.addFragment(new ThreeFragment(), "Trimester 2");
+        adapter.addFragment(new FourFragment(), "Trimester 3");
+        adapter.addFragment(new FiveFragment(), "Sudah Melahirkan");
         viewPager.setAdapter(adapter);
     }
 
@@ -124,6 +119,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        } else if (id == R.id.notes) {
+            Intent intent = new Intent(this, NoteActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
             startActivity(intent);
