@@ -18,9 +18,9 @@ import bro.id.siagaplus.R;
 public class ArtikelTrimester3Adapter extends RecyclerView.Adapter<ArtikelTrimester3Adapter.ViewHolder> {
 
     Context c;
-    private String [] menu={"Tanda Bahaya Kehamilan dan Perilaku Perawatan Kehamilan pada Ibu Hamil Trimester III", "Perlengkapan Bayi yang Perlu Disiapkan Sebelum Lahiran"};
-    private String [] nama={"trimester3.html", "perlengkapan_bayi.html"};
-    private String [] gambar={"trimester3.jpg", "perlengkapan_bayi.jpg"};
+    private String [] menu={"Tanda Bahaya Kehamilan dan Perilaku Perawatan Kehamilan pada Ibu Hamil Trimester III", "Perlengkapan Bayi yang Perlu Disiapkan Sebelum Lahiran", "Persiapan Melahirkan"};
+    private String [] nama={"trimester3.html", "perlengkapan_bayi.html", "melahirkan.html"};
+    private String [] gambar={"trimester3.jpg", "perlengkapan_bayi.jpg", "melahirkan.png"};
     private String url = "file:///android_asset/";
 
     public ArtikelTrimester3Adapter(Context con) {

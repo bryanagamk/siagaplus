@@ -18,9 +18,9 @@ import bro.id.siagaplus.R;
 public class ArtikelTrimester2Adapter extends RecyclerView.Adapter<ArtikelTrimester2Adapter.ViewHolder> {
 
     Context c;
-    private String [] menu={"Apakah Saya Perlu Menjalani Tes Amniocentesis Saat Hamil?"};
-    private String [] nama={"amnio.html"};
-    private String [] gambar={"amnio.png"};
+    private String [] menu={"Apakah Saya Perlu Menjalani Tes Amniocentesis Saat Hamil?", "Hubungan Antara Dukungan Keluarga dengan Penyesuaian Diri Ibu Hamil", "Hal-Hal yang Perlu Diperhatikan dalam Kesehatan Gigi Selama Masa Kehamilan", "Kesehatan Gigi dan Mulut pada Masa Kehamilan", "Nutrisi pada Ibu Hamil", "Pentingkah Olahraga Bagi Ibu Hamil?", "Makanan yang Harus Dihindari oleh Ibu Hamil", "Morning Sickness Atau Mual"};
+    private String [] nama={"amnio.html", "dukungan_keluarga.html", "kesehatan_gigi.html", "kesehatan.html", "nutrisi.html", "olahraga.html", "makanan.html", "mual.html"};
+    private String [] gambar={"amnio.png", "dukungan_keluarga.jpg", "kesehatan_gigi.jpg", "kesehatan.jpg", "nutrisi.jpg", "olahraga.jpg", "makanan.jpg", "mual.png",};
     private String url = "file:///android_asset/";
 
     public ArtikelTrimester2Adapter(Context con) {

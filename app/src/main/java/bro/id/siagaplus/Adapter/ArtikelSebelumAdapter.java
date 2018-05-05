@@ -18,9 +18,9 @@ import bro.id.siagaplus.R;
 public class ArtikelSebelumAdapter extends RecyclerView.Adapter<ArtikelSebelumAdapter.ViewHolder> {
 
     Context c;
-    private String [] menu={"Pentingnya Menjaga Kesehatan dan Mulut Calon Ibu dan Ayah"};
-    private String [] nama={"catin.html"};
-    private String [] gambar={"catin_html_a5152cd4.jpg"};
+    private String [] menu={"Pentingnya Menjaga Kesehatan dan Mulut Calon Ibu dan Ayah", "Yang Harus Diketahui Tentang Karies", "Radang Gusi (Gingivitis)"};
+    private String [] nama={"catin.html", "karies.html", "radang.html"};
+    private String [] gambar={"catin_html_a5152cd4.jpg", "karies.jpg", "radang.jpg"};
     private String url = "file:///android_asset/";
 
     public ArtikelSebelumAdapter(Context con) {

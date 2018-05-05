@@ -18,9 +18,9 @@ import bro.id.siagaplus.R;
 public class ArtikelSetelahAdapter extends RecyclerView.Adapter<ArtikelSetelahAdapter.ViewHolder> {
 
     Context c;
-    private String [] menu={"Baby Blues", "Lidah Bayi Berwarna Putih, Apakah Normal?"};
-    private String [] nama={"babyblues.html", "lidahputih.html"};
-    private String [] gambar={"babyblues.jpg", "lidahputih.jpg"};
+    private String [] menu={"Baby Blues", "Lidah Bayi Berwarna Putih, Apakah Normal?", "Tumbuh Kembang Gigi", "Menjaga Kebersihan Mulut Bayi", "Waspada Karies pada Anak"};
+    private String [] nama={"babyblues.html", "lidahputih.html", "gigi.html", "mulutbayi.html", "waspadakaries.html"};
+    private String [] gambar={"babyblues.jpg", "lidahputih.jpg", "gigi.png","mulutbayi.jpg","waspadakaries.jpg"};
     private String url = "file:///android_asset/";
 
     public ArtikelSetelahAdapter(Context con) {
