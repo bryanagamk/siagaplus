@@ -58,4 +58,12 @@
         android:fontStyle="normal"
         android:fontWeight="400"
         android:font="@font/sofiapro" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/sofiapro" />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/myriad_pro_regular" />
 </font-family>

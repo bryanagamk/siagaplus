@@ -32,9 +32,9 @@
             android:text="@string/nav_header_title"
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:fontFamily="@font/sofiapro"
+            android:fontFamily="@font/raleway_regular"
             android:textSize="18dp"
-            android:textColor="#ffae03"
+            android:textColor="#949494"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     </LinearLayout>
 
