@@ -19,36 +19,37 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import bro.id.siagaplus.Fragment.EightFragment;
 import bro.id.siagaplus.Fragment.FiveFragment;
 import bro.id.siagaplus.Fragment.FourFragment;
-import bro.id.siagaplus.Fragment.NineFragment;
 import bro.id.siagaplus.Fragment.OneFragment;
-import bro.id.siagaplus.Fragment.SevenFragment;
-import bro.id.siagaplus.Fragment.SixFragment;
-import bro.id.siagaplus.Fragment.TenFragment;
 import bro.id.siagaplus.Fragment.ThreeFragment;
 import bro.id.siagaplus.Fragment.TwoFragment;
 import bro.id.siagaplus.R;
+import bro.id.siagaplus.Utils.SharedPref;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public String username, name;
+    private SharedPref sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        sharedPref = new SharedPref(getApplicationContext());
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        username = getIntent().getStringExtra("username");
+//        HashMap<String, String> user = sharedPref.getUserDetails();
+//        name = user.get(SharedPref.KEY_NAME);
+//        Log.d(name,"crot");
+
+
+//        TextView mTextView = findViewById(R.id.navHeaderName);
+//        mTextView.setText(name);
+
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -118,32 +119,38 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
         } else if (id == R.id.notes) {
             Intent intent = new Intent(this, NoteActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.checklist) {
 
             Intent intent = new Intent(this, CheckListActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.artikel) {
             Intent intent = new Intent(this, ArtikelActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.aboutus) {
             Intent intent = new Intent(this, AboutUsActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.setting) {
             Intent intent = new Intent(this, SettingActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

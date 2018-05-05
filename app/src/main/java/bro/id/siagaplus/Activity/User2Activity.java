@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,8 +21,9 @@ import bro.id.siagaplus.R;
 public class User2Activity extends AppCompatActivity {
 
     EditText etTgl;
-    Date tglHaid;
-    public Calendar tglHamil;
+    public Date tglHaid;
+    public Calendar tglHamil, myCalendar;
+    public String bulan, minggu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,8 @@ public class User2Activity extends AppCompatActivity {
 
         textView.setText("Kapan\nibu " + txtUsernama +"\nterakhir kali Haid?");
 
-        final Calendar myCalendar = Calendar.getInstance();
+        myCalendar = Calendar.getInstance();
+        tglHamil = Calendar.getInstance();
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -44,14 +47,11 @@ public class User2Activity extends AppCompatActivity {
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.YEAR, year);
-                updateLabel();
-            }
-
-            void updateLabel() {
-                String myFormat = "dd/MM/yyyy";
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                etTgl.setText(sdf.format(myCalendar.getTime()));
-                tglHaid = myCalendar.getTime();
+                long aDay = updateLabel();
+                long oneMonth = aDay / 30;
+                long weeks = aDay / 7;
+                bulan = String.valueOf(oneMonth);
+                minggu = String.valueOf(weeks);
             }
         };
 
@@ -64,24 +64,31 @@ public class User2Activity extends AppCompatActivity {
             }
         });
 
-
-        tglHamil.setTime(tglHaid);
-        Calendar today = Calendar.getInstance();
-        long diff = today.getTimeInMillis() - tglHamil.getTimeInMillis();
-        final long days = diff / (24 * 60 * 60 * 1000);
-
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(User2Activity.this, User3Activity.class);
                 intent.putExtra("txtUsernama", txtUsernama);
-                intent.putExtra("days", days);
+                intent.putExtra("bulan", bulan);
+                intent.putExtra("minggu", minggu);
                 startActivity(intent);
+                finish();
             }
         });
-
-
     }
 
+    private long updateLabel() {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        etTgl.setText(sdf.format(myCalendar.getTime()));
+        tglHaid = myCalendar.getTime();
+        Log.d(String.valueOf(tglHaid), "updateLabel: ");
+
+        tglHamil.setTime(tglHaid);
+        Calendar today = Calendar.getInstance();
+        long diff = today.getTimeInMillis() - tglHamil.getTimeInMillis();
+
+        return diff / (24 * 60 * 60 * 1000);
+    }
 
 }

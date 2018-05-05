@@ -30,6 +30,7 @@ public class User11Activity extends AppCompatActivity {
                 Intent intent = new Intent(User11Activity.this, User2Activity.class);
                 intent.putExtra("txtUsernama", txtUsernama);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -38,6 +39,7 @@ public class User11Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(User11Activity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
