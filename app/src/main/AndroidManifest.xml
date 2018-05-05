@@ -44,12 +44,20 @@
             android:name=".Activity.NoteActivity"
             android:label="@string/title_activity_note"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".Activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".Activity.IsiArtikelActivity"
+            android:parentActivityName=".Activity.ArtikelActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activity.ArtikelActivity"/>
         </activity>
 
         <service
@@ -59,6 +67,8 @@
         <receiver android:name=".Activity.AlarmReceiver" />
 
         <activity android:name=".Activity.AlarmActivity"></activity>
+
+
     </application>
 
 </manifest>

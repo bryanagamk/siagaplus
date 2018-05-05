@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     tools:context="bro.id.siagaplus.Fragment.ThreeFragment"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
     >
 
     <ScrollView
@@ -30,125 +29,117 @@
                     android:src="@drawable/icon_shape"
                     />
             </RelativeLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Trimester 2"
-                android:textAlignment="center"
-                android:background="@color/colorPrimary"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                />
             <RelativeLayout
-                android:background="#e94b52"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:background="@drawable/background_gradient"
                 >
-                <TextView
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4 BLN"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/white"
-
-                    />
-                <TextView
-                    android:textColor="@android:color/white"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5 BLN"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:textStyle="bold"
-                    android:layout_centerHorizontal="true"
-                    />
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6 BLN"
-                    android:textSize="18dp"
-                    android:padding="10dp"
-                    android:layout_marginRight="30dp"
-                    android:textStyle="bold"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@android:color/white"
-
-                    />
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="AGENDA"
-                    android:padding="10dp"
-                    android:drawablePadding="10dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_agenda_24dp"
-                    />
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_agenda_fragmentthree"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AGENDA"
+                        android:fontFamily="@font/raleway_regular"
+                        android:drawablePadding="12dp"
+                        android:padding="10dp"
+                        android:textSize="18dp"
+                        android:drawableLeft="@drawable/ic_agenda_24dp"
 
-                </android.support.v7.widget.RecyclerView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="SEE MORE"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CHECKLIST"
-                    android:padding="10dp"
-                    android:drawablePadding="10dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_checklist_24dp"
-                    />
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_checklist_fragmentthree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:elevation="3dp"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Agenda"
+                            android:fontFamily="@font/raleway_regular"
+                            android:padding="5dp"
+                            android:background="#ccf7f7f7"
+                            android:textSize="12sp"
+                            android:textColor="#d6ff006a"
+                            />
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_agenda_fragmentthree"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
 
-                </android.support.v7.widget.RecyclerView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="SEE MORE"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ARTIKEL"
-                    android:padding="10dp"
-                    android:drawablePadding="10dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_agenda_24dp"
-                    />
-            </LinearLayout>        
+                        </android.support.v7.widget.RecyclerView>
+                        <TextView
+
+                            android:fontFamily="@font/myriad_pro_regular"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SEE MORE"
+                            android:padding="10dp"
+                            android:background="#ccf7f7f7"
+                            android:textAlignment="center"
+                            android:textSize="14sp"
+                            android:textColor="@color/colorBlueText"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CHECKLIST"
+                        android:padding="10dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/raleway_medium"
+                        android:drawablePadding="10dp"
+                        android:textSize="18dp"
+                        android:drawableLeft="@drawable/ic_checklist_24dp"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Checklist"
+                        android:padding="5dp"
+                        android:background="#ccf7f7f7"
+                        android:fontFamily="@font/raleway_regular"
+                        android:textSize="12sp"
+                        android:textColor="#ccff0004"
+                        />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_checklist_fragmentthree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SEE MORE"
+                        android:fontFamily="@font/myriad_pro_regular"
+                        android:padding="10dp"
+                        android:background="#ccf7f7f7"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorBlueText"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ARTIKEL"
+                        android:padding="10dp"
+                        android:drawablePadding="10dp"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:drawableLeft="@drawable/ic_agenda_24dp"
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>        
         </LinearLayout>
     </ScrollView>
     

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
@@ -26,20 +27,15 @@
             android:id="@+id/artikel"
             android:icon="@drawable/ic_artikel_24dp"
             android:title="Article" />
-
+        <item
+            android:id="@+id/setting"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Setting" />
+        <item
+            android:id="@+id/aboutus"
+            android:icon="@drawable/ic_about_us_24dp"
+            android:title="About Us" />
     </group>
 
-    <item android:title="Others">
-        <menu>
-            <item
-                android:id="@+id/setting"
-                android:icon="@drawable/ic_settings_black_24dp"
-                android:title="Setting" />
-            <item
-                android:id="@+id/aboutus"
-                android:icon="@drawable/ic_about_us_24dp"
-                android:title="About Us" />
-        </menu>
-    </item>
 
 </menu>

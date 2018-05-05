@@ -62,11 +62,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AGENDA"
+                    android:fontFamily="@font/raleway_regular"
+                    android:drawablePadding="12dp"
                     android:padding="10dp"
-                    android:drawablePadding="10dp"
                     android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_agenda_24dp"
+          android:drawableLeft="@drawable/ic_agenda_24dp"
+
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,12 +78,12 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="AGENDA"
+                        android:text="Agenda"
+                        android:fontFamily="@font/raleway_regular"
                         android:padding="5dp"
                         android:background="#ccf7f7f7"
-
                         android:textSize="12sp"
-                        android:textColor="#d6ffbb00"
+                        android:textColor="#d6ff006a"
                         />
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_agenda_fragmentone"
@@ -92,6 +93,8 @@
 
                     </android.support.v7.widget.RecyclerView>
                     <TextView
+
+                        android:fontFamily="@font/myriad_pro_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="SEE MORE"
@@ -108,9 +111,10 @@
                     android:layout_height="wrap_content"
                     android:text="CHECKLIST"
                     android:padding="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/raleway_medium"
                     android:drawablePadding="10dp"
                     android:textSize="18dp"
-                    android:textStyle="bold"
                     android:drawableLeft="@drawable/ic_checklist_24dp"
                     />
                 <TextView
@@ -119,7 +123,7 @@
                     android:text="Checklist"
                     android:padding="5dp"
                     android:background="#ccf7f7f7"
-
+                    android:fontFamily="@font/raleway_regular"
                     android:textSize="12sp"
                     android:textColor="#ccff0004"
                     />
@@ -133,6 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SEE MORE"
+                    android:fontFamily="@font/myriad_pro_regular"
                     android:padding="10dp"
                     android:background="#ccf7f7f7"
                     android:textAlignment="center"
