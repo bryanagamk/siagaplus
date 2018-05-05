@@ -38,39 +38,14 @@
 
     <EditText
         android:id="@+id/etTgl"
-        android:layout_width="82dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
         android:ems="10"
-        android:hint="Tanggal"
+        android:hint="Pilih Tanggal"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.203"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etThn"
-        android:layout_width="63dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:ems="10"
-        android:hint="Tahun"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.755"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etBln2"
-        android:layout_width="63dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:ems="10"
-        android:hint="Bulan"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,10 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="192dp"
         android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
