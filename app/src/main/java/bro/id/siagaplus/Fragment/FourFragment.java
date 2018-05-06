@@ -3,6 +3,7 @@ package bro.id.siagaplus.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
@@ -25,10 +27,10 @@ import bro.id.siagaplus.R;
 public class FourFragment extends Fragment {
 
     ArrayList<Agenda> mlistAgenda;
-    ArrayList<Checklist> mListChecklist;
+    ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
-
+    DatabaseHelper db;
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
     ArtikelAdapter artikelAdapter;
@@ -50,10 +52,11 @@ public class FourFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_four, container, false);
 
         mContext = this.getActivity().getApplicationContext();
-
+        db = new DatabaseHelper(mContext);
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
+        rawdataCheclist = new ArrayList<>();
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentfour);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentfour);
@@ -115,10 +118,10 @@ public class FourFragment extends Fragment {
     }
 
     private void getChecklist(){
-        Checklist checklist = new Checklist("fikkril PA",false);
-        mListChecklist.add(checklist);
-
-
+        rawdataCheclist = db.getAllChecklist(3);
+        for (int i = 0;i < 3;i++){
+            mListChecklist.add(rawdataCheclist.get(i));
+        }
 
         checklistAdapter.notifyDataSetChanged();
     }

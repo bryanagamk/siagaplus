@@ -52,6 +52,7 @@ public class ThreeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_three, container, false);
 
         mContext = this.getActivity().getApplicationContext();
+        db = new DatabaseHelper(mContext);
         rawdataCheclist = new ArrayList<>();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
@@ -67,7 +68,7 @@ public class ThreeFragment extends Fragment {
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
         Bundle myBundle = new Bundle();
 
-        myBundle.putInt("id",1);
+        myBundle.putInt("id",2);
 
         LinearLayoutManager llmArtikel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -112,7 +113,7 @@ public class ThreeFragment extends Fragment {
     }
 
     private void getChecklist(){
-        rawdataCheclist = db.getAllChecklist(3);
+        rawdataCheclist = db.getAllChecklist(2);
         for (int i = 0;i < 3;i++){
             mListChecklist.add(rawdataCheclist.get(i));
         }
