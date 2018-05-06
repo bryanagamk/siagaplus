@@ -19,14 +19,15 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
+                android:fontFamily="sans-serif"
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 android:textSize="25sp"
-                android:text="Artikel"
+                android:text="Article"
                 android:textColor="#FFF"
-                android:layout_gravity="left"/>
+                android:layout_gravity="center"/>
 
         </android.support.v7.widget.Toolbar>
 
