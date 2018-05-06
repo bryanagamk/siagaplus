@@ -17,6 +17,7 @@ import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
@@ -27,13 +28,14 @@ public class TwoFragment extends Fragment {
 
 
     ArrayList<Agenda> mlistAgenda;
-    ArrayList<Checklist> mListChecklist;
+    ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
     ArtikelAdapter artikelAdapter;
+    DatabaseHelper db;
 
     Context mContext;
     public TwoFragment() {
@@ -53,10 +55,13 @@ public class TwoFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_two, container, false);
 
         mContext = this.getActivity().getApplicationContext();
+        db = new DatabaseHelper(mContext);
 
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
+        rawdataCheclist = new ArrayList<>();
+
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmenttwo);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmenttwo);
@@ -120,14 +125,10 @@ public class TwoFragment extends Fragment {
     }
 
     private void getChecklist(){
-        Checklist checklist = new Checklist("jurnal PA",false);
-        mListChecklist.add(checklist);
-
-        checklist = new Checklist("Tugas",false);
-        mListChecklist.add(checklist);
-
-        checklist = new Checklist("Tugas TI",false);
-        mListChecklist.add(checklist);
+        rawdataCheclist = db.getAllChecklist(1);
+        for (int i = 0;i < 3;i++){
+            mListChecklist.add(rawdataCheclist.get(i));
+        }
 
         checklistAdapter.notifyDataSetChanged();
     }

@@ -3,6 +3,7 @@ package bro.id.siagaplus.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,10 +14,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import bro.id.siagaplus.Activity.ArtikelActivity;
-import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
@@ -25,14 +26,14 @@ import bro.id.siagaplus.R;
 public class ThreeFragment extends Fragment {
 
     ArrayList<Agenda> mlistAgenda;
-    ArrayList<Checklist> mListChecklist;
+    ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
     ArtikelAdapter artikelAdapter;
-
+    DatabaseHelper db;
     Context mContext;
     public ThreeFragment() {
         // Required empty public constructor
@@ -51,7 +52,7 @@ public class ThreeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_three, container, false);
 
         mContext = this.getActivity().getApplicationContext();
-
+        rawdataCheclist = new ArrayList<>();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
@@ -64,8 +65,9 @@ public class ThreeFragment extends Fragment {
 
         LinearLayoutManager llmChecklist = new LinearLayoutManager(mContext);
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
-        final Bundle myBundle = new Bundle();
-        myBundle.putInt("id",2);
+        Bundle myBundle = new Bundle();
+
+        myBundle.putInt("id",1);
 
         LinearLayoutManager llmArtikel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -86,15 +88,7 @@ public class ThreeFragment extends Fragment {
         getArtikel();
 
 
-        rootView.findViewById(R.id.link_checklist_fragmentthree).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
-                intent.putExtras(myBundle);
-                startActivity(intent);
-            }
 
-        });
         rootView.findViewById(R.id.link_artikel_fragmentthree).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,10 +112,10 @@ public class ThreeFragment extends Fragment {
     }
 
     private void getChecklist(){
-        Checklist checklist = new Checklist("jurnal PA",false);
-        mListChecklist.add(checklist);
-
-
+        rawdataCheclist = db.getAllChecklist(3);
+        for (int i = 0;i < 3;i++){
+            mListChecklist.add(rawdataCheclist.get(i));
+        }
 
         checklistAdapter.notifyDataSetChanged();
     }

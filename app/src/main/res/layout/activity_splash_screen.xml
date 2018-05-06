@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".Activity.SplashScreenActivity"
     android:id="@+id/splash_screen">
 
@@ -12,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/colorPink">
+        android:background="@drawable/background_gradient"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,22 +22,23 @@
             android:orientation="vertical"
             android:gravity="center">
 
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo" />
             <TextView
-                android:text="Siaga Plus"
+                android:text="S I A G A  P L U S"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvSplash"
-                android:textSize="60sp"
+                android:textSize="30sp"
                 android:textAlignment="center"
                 android:textColor="@color/calendar_future_days_bg"
-                android:fontFamily="sans-serif-smallcaps"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:src="@drawable/logo" />
+                android:fontFamily="@font/raleway_light"
+                />
             <ProgressBar
                 android:id="@+id/progresBar1"
                 android:layout_width="wrap_content"

@@ -183,6 +183,27 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
     /**
      * Updating a todo tag
      */
+
+    public void checkedChecklist(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_CEK, 1);
+
+        // updating row
+        db.update(TABLE_CHECKLIST, values, KEY_ID + " = "+ id, null);
+    }
+
+    public void uncheckedChecklist(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_CEK, 0);
+
+        // updating row
+        db.update(TABLE_CHECKLIST, values, KEY_ID + " = "+ id, null);
+    }
+
     public int updateChecklist(long id, String title) {
         SQLiteDatabase db = this.getWritableDatabase();
 
