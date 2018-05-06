@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/background_gradient"
+        android:background="@drawable/background_splash_screen"
         >
 
         <LinearLayout
@@ -40,6 +40,7 @@
                 android:fontFamily="@font/raleway_light"
                 />
             <ProgressBar
+                android:progressDrawable="@drawable/progress_bar_drawable_custom"
                 android:id="@+id/progresBar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

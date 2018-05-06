@@ -102,6 +102,7 @@ public class ChecklistAdapter  extends RecyclerView.Adapter<ChecklistAdapter.Vie
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     if (b){
+                        nama.setTextColor(Color.RED);
                         nama.setText("Sudah");
                         db.checkedChecklist(id);
                     } else {
