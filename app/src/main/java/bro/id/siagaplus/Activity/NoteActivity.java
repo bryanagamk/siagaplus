@@ -55,8 +55,8 @@ public class NoteActivity extends AppCompatActivity
 
         username = getIntent().getStringExtra("username");
 
-        TextView navHeaderName = findViewById(R.id.navHeaderName);
-        navHeaderName.setText(username);
+        /*TextView navHeaderName = findViewById(R.id.navHeaderName);
+        navHeaderName.setText(username);*/
 
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         recyclerView = findViewById(R.id.recycler_view);

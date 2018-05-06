@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
@@ -42,9 +41,6 @@ public class AgendaActivity extends AppCompatActivity
 
         username = getIntent().getStringExtra("username");
 
-        TextView navHeaderName = findViewById(R.id.navHeaderName);
-        navHeaderName.setText(username);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -73,7 +69,7 @@ public class AgendaActivity extends AppCompatActivity
         Calendar startTime1 = Calendar.getInstance();
         Calendar endTime1 = Calendar.getInstance();
 //        endTime1.add(Calendar.MONTH, 1);
-        startTime1.set(Calendar.MONTH,0);
+        startTime1.set(Calendar.MONTH,5);
         startTime1.set(Calendar.DATE,7);
         endTime1 = startTime1;
         BaseCalendarEvent event1 = new BaseCalendarEvent("Thibault travels in Iceland", "A wonderful journey!", "Iceland",

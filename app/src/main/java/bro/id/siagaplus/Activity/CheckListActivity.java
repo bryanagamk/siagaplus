@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import bro.id.siagaplus.R;
 
@@ -28,8 +27,8 @@ public class CheckListActivity extends AppCompatActivity
 
         username = getIntent().getStringExtra("username");
 
-        TextView navHeaderName = findViewById(R.id.navHeaderName);
-        navHeaderName.setText(username);
+        /*TextView navHeaderName = findViewById(R.id.navHeaderName);
+        navHeaderName.setText(username);*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
