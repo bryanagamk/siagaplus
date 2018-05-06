@@ -17,20 +17,25 @@ public class User3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_user3);
 
         final String txtUsernama = getIntent().getStringExtra("txtUsernama");
-        String tglHamil = getIntent().getStringExtra("days");
+        final String tglHamil = getIntent().getStringExtra("bulan");
+        final String minggu = getIntent().getStringExtra("minggu");
 
         Button btnOK = (Button) findViewById(R.id.hitungOk);
         TextView textView = (TextView) findViewById(R.id.textSelamat);
         TextView jumlah = (TextView) findViewById(R.id.bulanbulan);
+        TextView aWeeks = (TextView) findViewById(R.id.angkaMinggu);
 
-        textView.setText("Selamat\n Ibu " + txtUsernama + "\nAtas Kehamilannya");
+        textView.setText("Selamat\n Ibu " + txtUsernama + "\nAtas");
         jumlah.setText(tglHamil);
+        aWeeks.setText(minggu);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(User3Activity.this, MainActivity.class);
+                intent.putExtra("username", txtUsernama);
                 startActivity(intent);
+                finish();
             }
         });
     }

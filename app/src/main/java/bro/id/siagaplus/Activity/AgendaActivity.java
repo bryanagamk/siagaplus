@@ -31,13 +31,15 @@ public class AgendaActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CalendarPickerController {
 
     private static final String LOG_TAG = "JAM" ;
-
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        username = getIntent().getStringExtra("username");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,7 +69,7 @@ public class AgendaActivity extends AppCompatActivity
         Calendar startTime1 = Calendar.getInstance();
         Calendar endTime1 = Calendar.getInstance();
 //        endTime1.add(Calendar.MONTH, 1);
-        startTime1.set(Calendar.MONTH,0);
+        startTime1.set(Calendar.MONTH,5);
         startTime1.set(Calendar.DATE,7);
         endTime1 = startTime1;
         BaseCalendarEvent event1 = new BaseCalendarEvent("Thibault travels in Iceland", "A wonderful journey!", "Iceland",
@@ -133,28 +135,38 @@ public class AgendaActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
+        } else if (id == R.id.notes) {
+            Intent intent = new Intent(this, NoteActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
+
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.checklist) {
 
             Intent intent = new Intent(this, CheckListActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.artikel) {
             Intent intent = new Intent(this, ArtikelActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.aboutus) {
             Intent intent = new Intent(this, AboutUsActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.setting) {
             Intent intent = new Intent(this, SettingActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

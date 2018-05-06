@@ -16,12 +16,18 @@ import bro.id.siagaplus.R;
 public class AboutUsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        username = getIntent().getStringExtra("username");
+
+        /*TextView navHeaderName = findViewById(R.id.navHeaderName);
+        navHeaderName.setText(username);*/
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -73,28 +79,38 @@ public class AboutUsActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
+        } else if (id == R.id.notes) {
+            Intent intent = new Intent(this, NoteActivity.class);
+            intent.putExtra("username", username);
+            startActivity(intent);
+
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.checklist) {
 
             Intent intent = new Intent(this, CheckListActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.artikel) {
             Intent intent = new Intent(this, ArtikelActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.aboutus) {
             Intent intent = new Intent(this, AboutUsActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
 
         } else if (id == R.id.setting) {
             Intent intent = new Intent(this, SettingActivity.class);
+            intent.putExtra("username", username);
             startActivity(intent);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

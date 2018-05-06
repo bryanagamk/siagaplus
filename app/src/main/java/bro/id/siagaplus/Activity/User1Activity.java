@@ -11,6 +11,7 @@ import android.widget.Toast;
 import bro.id.siagaplus.R;
 import bro.id.siagaplus.Utils.AlertDialogManager;
 import bro.id.siagaplus.Utils.SessionManager;
+import bro.id.siagaplus.Utils.SharedPref;
 
 public class User1Activity extends AppCompatActivity {
 
@@ -26,6 +27,9 @@ public class User1Activity extends AppCompatActivity {
     // Session Manager Class
     SessionManager session;
 
+    // Session Manager Class
+    SharedPref status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class User1Activity extends AppCompatActivity {
 
         // Session Manager
         session = new SessionManager(getApplicationContext());
+        status = new SharedPref(getApplicationContext());
 
         btnOK = (Button) findViewById(R.id.confirm_user);
         txtUsername = (EditText) findViewById(R.id.userNama);
@@ -41,10 +46,12 @@ public class User1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String valueNama = txtUsername.getText().toString();
+                status.createStatus(valueNama);
                 Toast.makeText(getApplicationContext(), "Halo, Ibu " +valueNama, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getBaseContext(), User11Activity.class);
                 intent.putExtra("txtUsername",valueNama);
                 startActivity(intent);
+                finish();
             }
         });
 
