@@ -1,5 +1,6 @@
 package bro.id.siagaplus.Helper;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import bro.id.siagaplus.Model.Agenda;
+import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.Model.Note;
 
 public class DatabaseHelper extends SQLiteOpenHelper  {

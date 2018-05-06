@@ -87,7 +87,6 @@ public class OneFragment extends Fragment {
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
-        getAgenda();
         getChecklist();
         getArtikel();
 
@@ -112,19 +111,6 @@ public class OneFragment extends Fragment {
         return rootView;
     }
 
-        private void getAgenda(){
-
-            Agenda agenda = new Agenda("6/08/2018","11.00","bimbingan pak ali");
-            mlistAgenda.add(agenda);
-
-            agenda = new Agenda("6/08/2018","13.00","bimbingan pak udin");
-            mlistAgenda.add(agenda);
-
-            agenda = new Agenda("7/08/2018","11.00","proposal PA");
-            mlistAgenda.add(agenda);
-
-            agendaAdapter.notifyDataSetChanged();
-        }
 
         private void getChecklist(){
 
