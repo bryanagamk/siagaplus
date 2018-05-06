@@ -48,7 +48,8 @@
         android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNama" />
+        app:layout_constraintTop_toBottomOf="@+id/userNama"
+        style="@style/AppTheme.RoundedCornerMaterialButton"/>
 
     <ImageView
         android:id="@+id/imageView2"
