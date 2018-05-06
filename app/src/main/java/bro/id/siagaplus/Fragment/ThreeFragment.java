@@ -1,7 +1,7 @@
 package bro.id.siagaplus.Fragment;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +12,12 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import bro.id.siagaplus.Activity.ArtikelActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
+import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
 import bro.id.siagaplus.Model.Agenda;
+import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.R;
 
@@ -22,12 +25,14 @@ public class ThreeFragment extends Fragment {
 
     ArrayList<Agenda> mlistAgenda;
     ArrayList<Checklist> mListChecklist;
-    RecyclerView rvAgenda,rvChecklist;
+    ArrayList<Artikel> mListArtikel;
+    RecyclerView rvAgenda,rvChecklist,rvArtikel;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
-    Context mContext;
+    ArtikelAdapter artikelAdapter;
 
+    Context mContext;
     public ThreeFragment() {
         // Required empty public constructor
     }
@@ -48,9 +53,11 @@ public class ThreeFragment extends Fragment {
 
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
+        mListArtikel = new ArrayList<>();
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentthree);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentthree);
+        rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentthree);
 
         LinearLayoutManager llmAgenda = new LinearLayoutManager(mContext);
         llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
@@ -58,18 +65,31 @@ public class ThreeFragment extends Fragment {
         LinearLayoutManager llmChecklist = new LinearLayoutManager(mContext);
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
 
+        LinearLayoutManager llmArtikel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
         rvAgenda.setLayoutManager(llmAgenda);
         rvChecklist.setLayoutManager(llmChecklist);
+        rvArtikel.setLayoutManager(llmArtikel);
 
         agendaAdapter = new AgendaAdapter(mContext,mlistAgenda);
         checklistAdapter = new ChecklistAdapter(mContext,mListChecklist);
+        artikelAdapter = new ArtikelAdapter(mContext, mListArtikel);
 
         rvAgenda.setAdapter(agendaAdapter);
         rvChecklist.setAdapter(checklistAdapter);
-
+        rvArtikel.setAdapter(artikelAdapter);
 
         getAgenda();
         getChecklist();
+        getArtikel();
+
+        rootView.findViewById(R.id.link_artikel_fragmentthree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), ArtikelActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }
@@ -92,5 +112,18 @@ public class ThreeFragment extends Fragment {
 
 
         checklistAdapter.notifyDataSetChanged();
+    }
+
+    private void getArtikel(){
+        Artikel artikel = new Artikel("Apakah Saya Perlu Menjalani Tes Amniocentesis Saat Hamil?","Trimester 2", "amnio.png", "amnio.html");
+        mListArtikel.add(artikel);
+
+        artikel = new Artikel("Nutrisi pada Ibu Hamil","Trimester 2", "nutrisi.jpg", "nutrisi.html");
+        mListArtikel.add(artikel);
+
+        artikel = new Artikel("Kesehatan Gigi dan Mulut pada Masa Kehamilan","Trimester 2", "kesehatan.jpg", "kesehatan.html");
+        mListArtikel.add(artikel);
+
+        artikelAdapter.notifyDataSetChanged();
     }
 }

@@ -131,9 +131,33 @@
                     android:text="ARTIKEL"
                     android:padding="10dp"
                     android:drawablePadding="10dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:drawableLeft="@drawable/ic_agenda_24dp"
+                    android:fontFamily="@font/raleway_medium"
+                    android:drawableLeft="@drawable/ic_artikel_24dp"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_artikel_fragmentfive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ccf7f7f7"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
+                </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/link_artikel_fragmentfive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="SEE MORE"
+                    android:fontFamily="@font/myriad_pro_regular"
+                    android:background="#ccf7f7f7"
+                    android:textAlignment="center"
+                    android:padding="10dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlueText"
                     />
             </LinearLayout>
 
