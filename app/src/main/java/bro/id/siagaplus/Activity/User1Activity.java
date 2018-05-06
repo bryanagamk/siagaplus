@@ -52,7 +52,7 @@ public class User1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String valueNama = txtUsername.getText().toString();
-                status.createStatus(valueNama);
+                status.createStatus(valueNama, "");
                 Toast.makeText(getApplicationContext(), "Halo, Ibu " +valueNama, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getBaseContext(), User11Activity.class);
                 intent.putExtra("txtUsername",valueNama);

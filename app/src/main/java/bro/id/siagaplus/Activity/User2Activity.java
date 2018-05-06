@@ -14,16 +14,19 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import bro.id.siagaplus.R;
+import bro.id.siagaplus.Utils.SharedPref;
 
 public class User2Activity extends AppCompatActivity {
 
     EditText etTgl;
     public Date tglHaid;
     public Calendar tglHamil, myCalendar;
-    public String bulan, minggu;
+    public String bulan, minggu, nama;
+    SharedPref status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,10 @@ public class User2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_user2);
 
         final String txtUsernama = getIntent().getStringExtra("txtUsernama");
+
+        status = new SharedPref(getApplicationContext());
+        HashMap<String, String> user = status.getUserDetails();
+        nama = user.get(SharedPref.KEY_NAME);
 
         TextView textView = (TextView) findViewById(R.id.kapan);
         Button btnOK = (Button) findViewById(R.id.buttonOK);
@@ -67,6 +74,8 @@ public class User2Activity extends AppCompatActivity {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String tanggal = etTgl.getText().toString();
+                status.createStatus(nama, tanggal);
                 Intent intent = new Intent(User2Activity.this, User3Activity.class);
                 intent.putExtra("txtUsernama", txtUsernama);
                 intent.putExtra("bulan", bulan);
