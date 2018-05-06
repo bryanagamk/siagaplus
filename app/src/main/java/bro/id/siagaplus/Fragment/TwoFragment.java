@@ -17,6 +17,7 @@ import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
@@ -27,13 +28,14 @@ public class TwoFragment extends Fragment {
 
 
     ArrayList<Agenda> mlistAgenda;
-    ArrayList<Checklist> mListChecklist;
+    ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
     ArtikelAdapter artikelAdapter;
+    DatabaseHelper db;
 
     Context mContext;
     public TwoFragment() {
@@ -53,10 +55,13 @@ public class TwoFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_two, container, false);
 
         mContext = this.getActivity().getApplicationContext();
+        db = new DatabaseHelper(mContext);
 
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
+        rawdataCheclist = new ArrayList<>();
+
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmenttwo);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmenttwo);
@@ -96,6 +101,7 @@ public class TwoFragment extends Fragment {
                 intent.putExtras(myBundle);
                 startActivity(intent);
             }
+
         });
 
         rootView.findViewById(R.id.link_artikel_fragmenttwo).setOnClickListener(new View.OnClickListener() {
@@ -115,37 +121,26 @@ public class TwoFragment extends Fragment {
         Agenda agenda = new Agenda("6/08/2018","11.00","bimbingan pak ali");
         mlistAgenda.add(agenda);
 
-
-
         agendaAdapter.notifyDataSetChanged();
     }
 
     private void getChecklist(){
-        Checklist checklist = new Checklist("jurnal PA",false);
-        mListChecklist.add(checklist);
-
-        checklist = new Checklist("Tugas",false);
-        mListChecklist.add(checklist);
-
-        checklist = new Checklist("Tugas TI",false);
-        mListChecklist.add(checklist);
+        rawdataCheclist = db.getAllChecklist(1);
+        for (int i = 0;i < 3;i++){
+            mListChecklist.add(rawdataCheclist.get(i));
+        }
 
         checklistAdapter.notifyDataSetChanged();
     }
 
-    private String [] menu={"Awal Tanda Kehamilan", "Makanan yang Harus Dihindari oleh Ibu Hamil", "Morning Sickness Atau Mual", "Radang Gusi (Gingivitis)", "Kesehatan Gigi dan Mulut pada Masa Kehamilan", "Nutrisi pada Ibu Hamil", "Pentingkah Olahraga Bagi Ibu Hamil?"};
-    private String [] nama={"awal_kehamilan.html", "makanan.html", "mual.html", "radang.html", "kesehatan.html", "nutrisi.html", "olahraga.html"};
-    private String [] gambar={"awal_kehamilan.jpg", "makanan.jpg", "mual.png", "radang.jpg", "kesehatan.jpg", "nutrisi.jpg", "olahraga.jpg"};
-    private String url = "file:///android_asset/";
-
     private void getArtikel(){
-        Artikel artikel = new Artikel("Awal Tanda Kehamilan","Sebelum Hamil", "catin_html_a5152cd4.jpg", "catin.html");
+        Artikel artikel = new Artikel("Awal Tanda Kehamilan","Trimester 1", "awal_kehamilan.jpg", "awal_kehamilan.html");
         mListArtikel.add(artikel);
 
-        artikel = new Artikel("Yang Harus Diketahui Tentang Karies","Sebelum Hamil", "karies.jpg", "karies.html");
+        artikel = new Artikel("Makanan yang Harus Dihindari oleh Ibu Hamil","Trimester 1", "makanan.jpg", "makanan.html");
         mListArtikel.add(artikel);
 
-        artikel = new Artikel("Radang Gusi (Gingivitis)","Sebelum Hamil", "radang.jpg", "radang.html");
+        artikel = new Artikel("Morning Sickness Atau Mual","Trimester 1", "mual.png", "mual.html");
         mListArtikel.add(artikel);
 
         artikelAdapter.notifyDataSetChanged();

@@ -18,6 +18,7 @@ import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
@@ -27,9 +28,10 @@ import bro.id.siagaplus.R;
 public class OneFragment extends Fragment {
 
     ArrayList<Agenda> mlistAgenda;
-    ArrayList<Checklist> mListChecklist;
+    ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
+    DatabaseHelper db;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
@@ -54,7 +56,9 @@ public class OneFragment extends Fragment {
         final Bundle myBundle = new Bundle();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
+        rawdataCheclist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
+        db = new DatabaseHelper(mContext);
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentone);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentone);
@@ -123,11 +127,11 @@ public class OneFragment extends Fragment {
         }
 
         private void getChecklist(){
-            Checklist checklist = new Checklist("jurnal PA",false);
-            mListChecklist.add(checklist);
 
-            checklist = new Checklist("Tugas",false);
-            mListChecklist.add(checklist);
+            rawdataCheclist = db.getAllChecklist(0);
+            for (int i = 0;i < 3;i++){
+                mListChecklist.add(rawdataCheclist.get(i));
+            }
 
             checklistAdapter.notifyDataSetChanged();
         }
