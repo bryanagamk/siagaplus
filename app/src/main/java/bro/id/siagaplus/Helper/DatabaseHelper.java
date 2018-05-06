@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.Model.Note;
 
 public class DatabaseHelper extends SQLiteOpenHelper  {
@@ -207,6 +208,36 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
             db.close();
+    }
+
+    public ArrayList<Checklist> getAllChecklist(int id) {
+        ArrayList<Checklist> notes = new ArrayList<>();
+        int queryid = id;
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_CHECKLIST + " WHERE jenis = " + queryid;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+
+        if (cursor.moveToFirst()) {
+            do {
+                Checklist checklist = new Checklist(
+                        cursor.getInt(cursor.getColumnIndex(KEY_ID)),
+                        cursor.getInt(cursor.getColumnIndex(KEY_JENIS)),
+                        cursor.getString(cursor.getColumnIndex(KEY_TITLE)),
+                        cursor.getInt(cursor.getColumnIndex(KEY_CEK))
+                );
+                notes.add(checklist);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return notes;
     }
 
     /**

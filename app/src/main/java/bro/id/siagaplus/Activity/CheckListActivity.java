@@ -17,27 +17,28 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.R;
 
 public class CheckListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     LinearLayout lin1,lin2,lin3,lin4,lin5,lin6,lin7;
-    ArrayList<Checklist> sblm_hamil_1,sblm_hamil_2,sblm_hamil_3,sblm_hamil_4;
 
     ChecklistAdapter mListAdapter1,mListAdapter2,mListAdapter3,mListAdapter4;
 
-    ArrayList<Checklist> trimester1_1,trimester1_2,trimester1_3,trimester1_4;
-
-    ArrayList<Checklist> trimester2_1,trimester2_2,trimester2_3;
-
-    ArrayList<Checklist> trimester3_1,trimester3_2,trimester3_3,trimester3_4;
-
-    ArrayList<Checklist> sdh_hamil_1,sdh_hamil_2,sdh_hamil_3,sdh_hamil_4;
+    ArrayList<Checklist> trimester1_1;
+    ArrayList<Checklist> trimester1_2;
+    ArrayList<Checklist> trimester1_3;
+    ArrayList<Checklist> trimester1_4;
+    ArrayList<Checklist> mListdatachecklist;
 
     RecyclerView rv_checklist1,rv_checklist2,rv_checklist3,rv_checklist4,rv_checklist5,rv_checklist6,rv_checklist7;
+    DatabaseHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,33 +46,14 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_check_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        db = new DatabaseHelper(getApplicationContext());
         int code;
-
-
-        sblm_hamil_1 = new ArrayList<>();
-        sblm_hamil_2 = new ArrayList<>();
-        sblm_hamil_3 = new ArrayList<>();
-        sblm_hamil_4 = new ArrayList<>();
 
         trimester1_1 = new ArrayList<>();
         trimester1_2 = new ArrayList<>();
         trimester1_3 = new ArrayList<>();
         trimester1_4 = new ArrayList<>();
-
-        trimester2_1 = new ArrayList<>();
-        trimester2_2 = new ArrayList<>();
-        trimester2_3 = new ArrayList<>();
-
-        trimester3_1 = new ArrayList<>();
-        trimester3_2 = new ArrayList<>();
-        trimester3_3 = new ArrayList<>();
-        trimester3_4 = new ArrayList<>();
-
-        sdh_hamil_1 = new ArrayList<>();
-        sdh_hamil_2 = new ArrayList<>();
-        sdh_hamil_3 = new ArrayList<>();
-        sdh_hamil_4 = new ArrayList<>();
+        mListdatachecklist = new ArrayList<>();
 
         rv_checklist1 = findViewById(R.id.listview_pemeriksakesehatan);
         rv_checklist2 = findViewById(R.id.listview_menjagakesahatan);
@@ -129,31 +111,9 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
             lin3.setVisibility(View.VISIBLE);
             lin4.setVisibility(View.VISIBLE);
 
-            mListAdapter1 = new ChecklistAdapter(this,sblm_hamil_1);
-            mListAdapter2 = new ChecklistAdapter(this,sblm_hamil_2);
-            mListAdapter3 = new ChecklistAdapter(this,sblm_hamil_3);
-            mListAdapter4 = new ChecklistAdapter(this,sblm_hamil_4);
+            mListdatachecklist = db.getAllChecklist(code);
 
 
-
-            rv_checklist1.setAdapter(mListAdapter1);
-            rv_checklist2.setAdapter(mListAdapter2);
-            rv_checklist3.setAdapter(mListAdapter3);
-            rv_checklist4.setAdapter(mListAdapter4);
-
-            /*initDatasblmhamil();*/
-
-            mListAdapter1.notifyDataSetChanged();
-            mListAdapter2.notifyDataSetChanged();
-            mListAdapter3.notifyDataSetChanged();
-            mListAdapter4.notifyDataSetChanged();
-
-
-        } else if (code == 1){
-            lin5.setVisibility(View.VISIBLE);
-            lin1.setVisibility(View.VISIBLE);
-            lin2.setVisibility(View.VISIBLE);
-            lin3.setVisibility(View.VISIBLE);
 
             mListAdapter1 = new ChecklistAdapter(this,trimester1_1);
             mListAdapter2 = new ChecklistAdapter(this,trimester1_2);
@@ -165,14 +125,155 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
             rv_checklist1.setAdapter(mListAdapter1);
             rv_checklist2.setAdapter(mListAdapter2);
             rv_checklist3.setAdapter(mListAdapter3);
+            rv_checklist4.setAdapter(mListAdapter4);
+
+            for (int i = 0; i < 8;i++){
+              trimester1_1.add(mListdatachecklist.get(i));
+            }
+            mListAdapter1.notifyDataSetChanged();
+            for (int i = 8; i < 14;i++){
+                trimester1_2.add(mListdatachecklist.get(i));
+            }
+            mListAdapter2.notifyDataSetChanged();
+            for (int i = 14; i < 20;i++){
+                trimester1_3.add(mListdatachecklist.get(i));
+            }
+            mListAdapter3.notifyDataSetChanged();
+            for (int i = 20; i < 26;i++){
+                trimester1_4.add(mListdatachecklist.get(i));
+            }
+            mListAdapter4.notifyDataSetChanged();
+
+
+        } else if (code == 1) {
+            lin5.setVisibility(View.VISIBLE);
+            lin1.setVisibility(View.VISIBLE);
+            lin2.setVisibility(View.VISIBLE);
+            lin3.setVisibility(View.VISIBLE);
+
+            mListAdapter1 = new ChecklistAdapter(this, trimester1_1);
+            mListAdapter2 = new ChecklistAdapter(this, trimester1_2);
+            mListAdapter3 = new ChecklistAdapter(this, trimester1_3);
+            mListAdapter4 = new ChecklistAdapter(this, trimester1_4);
+            mListdatachecklist = db.getAllChecklist(code);
+
+
+            rv_checklist1.setAdapter(mListAdapter1);
+            rv_checklist2.setAdapter(mListAdapter2);
+            rv_checklist3.setAdapter(mListAdapter3);
             rv_checklist5.setAdapter(mListAdapter4);
 
-            /*initrimesterchecklist();*/
-
+            for (int i = 0; i < 10; i++) {
+                trimester1_1.add(mListdatachecklist.get(i));
+            }
             mListAdapter1.notifyDataSetChanged();
+            for (int i = 10; i < 14; i++) {
+                trimester1_2.add(mListdatachecklist.get(i));
+            }
             mListAdapter2.notifyDataSetChanged();
+            for (int i = 14; i < 20; i++) {
+                trimester1_3.add(mListdatachecklist.get(i));
+            }
             mListAdapter3.notifyDataSetChanged();
+            for (int i = 20; i < 25; i++) {
+                trimester1_4.add(mListdatachecklist.get(i));
+            }
+
+        } else if (code == 2){
+            lin5.setVisibility(View.VISIBLE);
+            lin2.setVisibility(View.VISIBLE);
+            lin3.setVisibility(View.VISIBLE);
+
+            mListAdapter1 = new ChecklistAdapter(this,trimester1_1);
+            mListAdapter2 = new ChecklistAdapter(this,trimester1_2);
+            mListAdapter3 = new ChecklistAdapter(this,trimester1_3);
+            mListAdapter4 = new ChecklistAdapter(this,trimester1_4);
+            mListdatachecklist = db.getAllChecklist(code);
+
+
+
+            rv_checklist2.setAdapter(mListAdapter2);
+            rv_checklist3.setAdapter(mListAdapter3);
+            rv_checklist5.setAdapter(mListAdapter1);
+
+            for (int i = 0; i < 4;i++){
+                trimester1_1.add(mListdatachecklist.get(i));
+            }
+            mListAdapter1.notifyDataSetChanged();
+            for (int i = 4; i < 10;i++){
+                trimester1_2.add(mListdatachecklist.get(i));
+            }
+            mListAdapter2.notifyDataSetChanged();
+            for (int i = 10; i < 15;i++){
+                trimester1_3.add(mListdatachecklist.get(i));
+            }
+            mListAdapter3.notifyDataSetChanged();
+
+
+        } else if (code == 3){
+            lin5.setVisibility(View.VISIBLE);
+            lin6.setVisibility(View.VISIBLE);
+            lin2.setVisibility(View.VISIBLE);
+            lin3.setVisibility(View.VISIBLE);
+
+            mListAdapter1 = new ChecklistAdapter(this, trimester1_1);
+            mListAdapter2 = new ChecklistAdapter(this, trimester1_2);
+            mListAdapter3 = new ChecklistAdapter(this, trimester1_3);
+            mListAdapter4 = new ChecklistAdapter(this, trimester1_4);
+            mListdatachecklist = db.getAllChecklist(code);
+
+
+            rv_checklist6.setAdapter(mListAdapter4);
+            rv_checklist2.setAdapter(mListAdapter2);
+            rv_checklist3.setAdapter(mListAdapter3);
+            rv_checklist5.setAdapter(mListAdapter1);
+
+            for (int i = 0; i < 4; i++) {
+                trimester1_1.add(mListdatachecklist.get(i));
+            }
+            mListAdapter1.notifyDataSetChanged();
+            for (int i = 4; i < 10; i++) {
+                trimester1_2.add(mListdatachecklist.get(i));
+            }
+            mListAdapter2.notifyDataSetChanged();
+            for (int i = 10; i < 13; i++) {
+                trimester1_3.add(mListdatachecklist.get(i));
+            }
+            mListAdapter3.notifyDataSetChanged();
+            for (int i = 13; i < 18; i++) {
+                trimester1_4.add(mListdatachecklist.get(i));
+            }
             mListAdapter4.notifyDataSetChanged();
+        } else if (code == 4){
+            lin2.setVisibility(View.VISIBLE);
+            lin3.setVisibility(View.VISIBLE);
+            lin7.setVisibility(View.VISIBLE);
+
+            mListAdapter1 = new ChecklistAdapter(this, trimester1_1);
+            mListAdapter2 = new ChecklistAdapter(this, trimester1_2);
+            mListAdapter3 = new ChecklistAdapter(this, trimester1_3);
+            mListAdapter4 = new ChecklistAdapter(this, trimester1_4);
+            mListdatachecklist = db.getAllChecklist(code);
+
+
+            rv_checklist7.setAdapter(mListAdapter3);
+            rv_checklist2.setAdapter(mListAdapter1);
+            rv_checklist3.setAdapter(mListAdapter2);
+
+            for (int i = 0; i < 7; i++) {
+                trimester1_1.add(mListdatachecklist.get(i));
+            }
+            mListAdapter1.notifyDataSetChanged();
+            for (int i = 7; i < 13; i++) {
+                trimester1_2.add(mListdatachecklist.get(i));
+            }
+            mListAdapter2.notifyDataSetChanged();
+            for (int i = 13; i < 23; i++) {
+                trimester1_3.add(mListdatachecklist.get(i));
+            }
+            mListAdapter3.notifyDataSetChanged();
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
