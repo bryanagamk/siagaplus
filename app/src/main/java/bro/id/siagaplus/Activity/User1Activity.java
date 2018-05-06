@@ -191,6 +191,6 @@ public class User1Activity extends AppCompatActivity {
         long id20 = db.createChecklist(105, 4, "Tes Mata",0);
         long id21 = db.createChecklist(106, 4, "Tes refleks",0);
         long id22 = db.createChecklist(107, 4, "Tes vitamin K",0);
-        long id23 = db.createChecklist(108, 4, "Tes vitamin K",0);
+
     }
 }

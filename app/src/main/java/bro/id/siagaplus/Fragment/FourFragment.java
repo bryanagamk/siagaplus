@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import bro.id.siagaplus.Activity.ArtikelActivity;
+import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
@@ -57,6 +58,8 @@ public class FourFragment extends Fragment {
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentfour);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentfour);
         rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentfour);
+        final Bundle myBundle = new Bundle();
+        myBundle.putInt("id",3);
 
         LinearLayoutManager llmAgenda = new LinearLayoutManager(mContext);
         llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
@@ -81,6 +84,15 @@ public class FourFragment extends Fragment {
         getAgenda();
         getChecklist();
         getArtikel();
+
+        rootView.findViewById(R.id.link_checklist_fragmentfour).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
 
         rootView.findViewById(R.id.link_artikel_fragmentfour).setOnClickListener(new View.OnClickListener() {
             @Override

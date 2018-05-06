@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import bro.id.siagaplus.Activity.ArtikelActivity;
+import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
@@ -58,12 +59,13 @@ public class ThreeFragment extends Fragment {
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentthree);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentthree);
         rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentthree);
-
         LinearLayoutManager llmAgenda = new LinearLayoutManager(mContext);
         llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
 
         LinearLayoutManager llmChecklist = new LinearLayoutManager(mContext);
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
+        final Bundle myBundle = new Bundle();
+        myBundle.putInt("id",2);
 
         LinearLayoutManager llmArtikel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -83,6 +85,16 @@ public class ThreeFragment extends Fragment {
         getChecklist();
         getArtikel();
 
+
+        rootView.findViewById(R.id.link_checklist_fragmentthree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+
+        });
         rootView.findViewById(R.id.link_artikel_fragmentthree).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

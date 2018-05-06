@@ -116,6 +116,7 @@
 
                     </android.support.v7.widget.RecyclerView>
                     <TextView
+                        android:id="@+id/link_checklist_fragmentthree"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="SEE MORE"

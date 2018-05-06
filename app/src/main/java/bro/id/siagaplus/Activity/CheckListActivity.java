@@ -268,7 +268,7 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
                 trimester1_2.add(mListdatachecklist.get(i));
             }
             mListAdapter2.notifyDataSetChanged();
-            for (int i = 13; i < 23; i++) {
+            for (int i = 13; i < 22; i++) {
                 trimester1_3.add(mListdatachecklist.get(i));
             }
             mListAdapter3.notifyDataSetChanged();

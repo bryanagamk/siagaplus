@@ -96,6 +96,7 @@ public class TwoFragment extends Fragment {
                 intent.putExtras(myBundle);
                 startActivity(intent);
             }
+
         });
 
         rootView.findViewById(R.id.link_artikel_fragmenttwo).setOnClickListener(new View.OnClickListener() {
