@@ -1,6 +1,7 @@
 package bro.id.siagaplus.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
+import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
 import bro.id.siagaplus.Model.Agenda;
@@ -45,7 +48,7 @@ public class OneFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_one, container, false);
         mContext = this.getActivity().getApplicationContext();
-
+        final Bundle myBundle = new Bundle();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
 
@@ -72,6 +75,18 @@ public class OneFragment extends Fragment {
 
         getAgenda();
         getChecklist();
+
+
+
+        rootView.findViewById(R.id.link_checklist_fragmentone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
+                myBundle.putInt("id",0);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

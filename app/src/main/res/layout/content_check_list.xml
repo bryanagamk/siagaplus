@@ -40,14 +40,14 @@
                         android:textSize="12sp"
                         android:textColor="#d6ff0004"
                         />
-                    <ListView
+                    <android.support.v7.widget.RecyclerView
                         android:id="@+id/listview_pemeriksakesehatan"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:divider="#b5b5b5"
                         android:dividerHeight="1dp"
                         >
-                    </ListView>
+                    </android.support.v7.widget.RecyclerView>
                 </LinearLayout>
 
             <LinearLayout
@@ -71,14 +71,12 @@
                     android:textSize="12sp"
                     android:textColor="#d6ff7300"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_menjagakesahatan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_checklist3"
@@ -101,14 +99,12 @@
                     android:textSize="12sp"
                     android:textColor="#d66c0da7"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_kesehatangigidanrongamulut"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_checklist4"
@@ -132,14 +128,12 @@
                     android:textSize="12sp"
                     android:textColor="#d6005cb7"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_persiapanpernikahan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_checklist5"
@@ -162,14 +156,12 @@
                     android:textSize="12sp"
                     android:textColor="#d6049680"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_kesehatankehamilan"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_checklist6"
@@ -192,14 +184,12 @@
                     android:textSize="12sp"
                     android:textColor="#d6960472"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_Persiapankelahiran"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout_checklist7"
@@ -222,14 +212,12 @@
                     android:textSize="12sp"
                     android:textColor="#d6960472"
                     />
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/listview_Kesehatananak"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:divider="#b5b5b5"
-                    android:dividerHeight="1dp"
                     >
-                </ListView>
+                </android.support.v7.widget.RecyclerView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

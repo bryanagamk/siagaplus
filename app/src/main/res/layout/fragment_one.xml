@@ -93,7 +93,7 @@
 
                     </android.support.v7.widget.RecyclerView>
                     <TextView
-
+                        android:id="@+id/link_agenda_fragmentone"
                         android:fontFamily="@font/myriad_pro_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -134,6 +134,7 @@
 
                 </android.support.v7.widget.RecyclerView>
                 <TextView
+                    android:id="@+id/link_checklist_fragmentone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="SEE MORE"

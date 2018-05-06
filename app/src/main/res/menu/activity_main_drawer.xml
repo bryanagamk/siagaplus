@@ -19,10 +19,7 @@
             android:id="@+id/agenda"
             android:icon="@drawable/ic_agenda_24dp"
             android:title="Agenda" />
-        <item
-            android:id="@+id/checklist"
-            android:icon="@drawable/ic_checklist_24dp"
-            android:title="Check List" />
+
         <item
             android:id="@+id/artikel"
             android:icon="@drawable/ic_artikel_24dp"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fab0b3</color>
-    <color name="colorPrimaryDark">#a2d9ed</color>
-    <color name="colorAccent">#8b8b8b</color>
+    <color name="colorPrimary">#ccf98287</color>
+    <color name="colorPrimaryDark">#cca2d9ed</color>
+    <color name="colorAccent">#cc8b8b8b</color>
     <color name="colorWhite">#ffffff</color>
-    <color name="colorPink">#fab0b3</color>
-    <color name="colorBlueText">#62a4ec</color>
+    <color name="colorPink">#ccfab0b3</color>
+    <color name="colorBlueText">#cc62a4ec</color>
     <color name="applevaley">#ea8685</color>
     <color name="pencil">#596275</color>
     <color name="rosy">#f7d794</color>
