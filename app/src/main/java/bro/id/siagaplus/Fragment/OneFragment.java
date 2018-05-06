@@ -2,7 +2,6 @@ package bro.id.siagaplus.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -12,13 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
+import bro.id.siagaplus.Activity.ArtikelActivity;
 import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
+import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
 import bro.id.siagaplus.Model.Agenda;
+import bro.id.siagaplus.Model.Artikel;
 import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.R;
 
@@ -27,10 +28,12 @@ public class OneFragment extends Fragment {
 
     ArrayList<Agenda> mlistAgenda;
     ArrayList<Checklist> mListChecklist;
-    RecyclerView rvAgenda,rvChecklist;
+    ArrayList<Artikel> mListArtikel;
+    RecyclerView rvAgenda,rvChecklist,rvArtikel;
 
     AgendaAdapter agendaAdapter;
     ChecklistAdapter checklistAdapter;
+    ArtikelAdapter artikelAdapter;
 
     Context mContext;
     public OneFragment() {
@@ -51,9 +54,11 @@ public class OneFragment extends Fragment {
         final Bundle myBundle = new Bundle();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
+        mListArtikel = new ArrayList<>();
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentone);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentone);
+        rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentone);
 
         LinearLayoutManager llmAgenda = new LinearLayoutManager(mContext);
         llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
@@ -61,22 +66,26 @@ public class OneFragment extends Fragment {
         LinearLayoutManager llmChecklist = new LinearLayoutManager(mContext);
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
 
+        LinearLayoutManager llmArtikel = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
         rvAgenda.setLayoutManager(llmAgenda);
         rvChecklist.setLayoutManager(llmChecklist);
+        rvArtikel.setLayoutManager(llmArtikel);
 
         agendaAdapter = new AgendaAdapter(mContext,mlistAgenda);
         checklistAdapter = new ChecklistAdapter(mContext,mListChecklist);
+        artikelAdapter = new ArtikelAdapter(mContext, mListArtikel);
+
         rvAgenda.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
         rvChecklist.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
 
         rvAgenda.setAdapter(agendaAdapter);
         rvChecklist.setAdapter(checklistAdapter);
-
+        rvArtikel.setAdapter(artikelAdapter);
 
         getAgenda();
         getChecklist();
-
-
+        getArtikel();
 
         rootView.findViewById(R.id.link_checklist_fragmentone).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +93,14 @@ public class OneFragment extends Fragment {
                 Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
                 myBundle.putInt("id",0);
                 intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
+
+        rootView.findViewById(R.id.link_artikel_fragmentone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), ArtikelActivity.class);
                 startActivity(intent);
             }
         });
@@ -113,5 +130,18 @@ public class OneFragment extends Fragment {
             mListChecklist.add(checklist);
 
             checklistAdapter.notifyDataSetChanged();
+        }
+
+        private void getArtikel(){
+            Artikel artikel = new Artikel("Pentingnya Menjaga Kesehatan dan Mulut Calon Ibu dan Ayah","Sebelum Hamil", "catin_html_a5152cd4.jpg", "catin.html");
+            mListArtikel.add(artikel);
+
+            artikel = new Artikel("Yang Harus Diketahui Tentang Karies","Sebelum Hamil", "karies.jpg", "karies.html");
+            mListArtikel.add(artikel);
+
+            artikel = new Artikel("Radang Gusi (Gingivitis)","Sebelum Hamil", "radang.jpg", "radang.html");
+            mListArtikel.add(artikel);
+
+            artikelAdapter.notifyDataSetChanged();
         }
 }

@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import bro.id.siagaplus.R;
 import bro.id.siagaplus.Utils.SharedPref;
@@ -57,13 +56,20 @@ public class SettingActivity extends AppCompatActivity
                             .setPositiveButton("Ya",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int id) {
                                     // jika tombol diklik, maka akan menutup activity ini
-                                    sharedPref.logoutUser();
+                                    sharedPref.clearData();
+                                    // After clear redirect user to User1 Activity
+                                    Intent i = new Intent(getApplicationContext(), User1Activity.class);
+                                    // Closing all the Activities
+                                    finishAffinity();
+                                    // Starting User1 Activity
+                                    startActivity(i);
                                 }
                             })
                             .setNegativeButton("Tidak",new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // jika tombol ini diklik, akan menutup dialog
                                     // dan tidak terjadi apa2
+                                    switch1.setChecked(false);
                                     dialog.cancel();
                                 }
                             });
@@ -73,9 +79,6 @@ public class SettingActivity extends AppCompatActivity
 
                     // menampilkan alert dialog
                     alertDialog.show();
-                    Toast.makeText(SettingActivity.this, "Check", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SettingActivity.this, "Uncheck", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -148,28 +151,22 @@ public class SettingActivity extends AppCompatActivity
             Intent intent = new Intent(this, NoteActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
-
         } else if (id == R.id.agenda) {
             Intent intent = new Intent(this, AgendaActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
-
         } else if (id == R.id.checklist) {
-
             Intent intent = new Intent(this, CheckListActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
-
         } else if (id == R.id.artikel) {
             Intent intent = new Intent(this, ArtikelActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
-
         } else if (id == R.id.aboutus) {
             Intent intent = new Intent(this, AboutUsActivity.class);
             intent.putExtra("username", username);
             startActivity(intent);
-
         } else if (id == R.id.setting) {
             Intent intent = new Intent(this, SettingActivity.class);
             intent.putExtra("username", username);
