@@ -60,7 +60,7 @@ public class TwoFragment extends Fragment {
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmenttwo);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmenttwo);
-        rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentone);
+        rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmenttwo);
 
         LinearLayoutManager llmAgenda = new LinearLayoutManager(mContext);
         llmAgenda.setOrientation(LinearLayoutManager.VERTICAL);
@@ -98,7 +98,7 @@ public class TwoFragment extends Fragment {
             }
         });
 
-        rootView.findViewById(R.id.link_artikel_fragmentone).setOnClickListener(new View.OnClickListener() {
+        rootView.findViewById(R.id.link_artikel_fragmenttwo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), ArtikelActivity.class);
