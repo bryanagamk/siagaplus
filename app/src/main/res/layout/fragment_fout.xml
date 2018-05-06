@@ -25,7 +25,7 @@
                     android:layout_height="120dp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/icon_shape"
+                    android:src="@drawable/trimester_3"
                     />
             </RelativeLayout>
             <RelativeLayout
