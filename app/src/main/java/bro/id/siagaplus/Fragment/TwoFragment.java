@@ -115,8 +115,6 @@ public class TwoFragment extends Fragment {
         Agenda agenda = new Agenda("6/08/2018","11.00","bimbingan pak ali");
         mlistAgenda.add(agenda);
 
-
-
         agendaAdapter.notifyDataSetChanged();
     }
 
@@ -133,19 +131,14 @@ public class TwoFragment extends Fragment {
         checklistAdapter.notifyDataSetChanged();
     }
 
-    private String [] menu={"Awal Tanda Kehamilan", "Makanan yang Harus Dihindari oleh Ibu Hamil", "Morning Sickness Atau Mual", "Radang Gusi (Gingivitis)", "Kesehatan Gigi dan Mulut pada Masa Kehamilan", "Nutrisi pada Ibu Hamil", "Pentingkah Olahraga Bagi Ibu Hamil?"};
-    private String [] nama={"awal_kehamilan.html", "makanan.html", "mual.html", "radang.html", "kesehatan.html", "nutrisi.html", "olahraga.html"};
-    private String [] gambar={"awal_kehamilan.jpg", "makanan.jpg", "mual.png", "radang.jpg", "kesehatan.jpg", "nutrisi.jpg", "olahraga.jpg"};
-    private String url = "file:///android_asset/";
-
     private void getArtikel(){
-        Artikel artikel = new Artikel("Awal Tanda Kehamilan","Sebelum Hamil", "catin_html_a5152cd4.jpg", "catin.html");
+        Artikel artikel = new Artikel("Awal Tanda Kehamilan","Trimester 1", "awal_kehamilan.jpg", "awal_kehamilan.html");
         mListArtikel.add(artikel);
 
-        artikel = new Artikel("Yang Harus Diketahui Tentang Karies","Sebelum Hamil", "karies.jpg", "karies.html");
+        artikel = new Artikel("Makanan yang Harus Dihindari oleh Ibu Hamil","Trimester 1", "makanan.jpg", "makanan.html");
         mListArtikel.add(artikel);
 
-        artikel = new Artikel("Radang Gusi (Gingivitis)","Sebelum Hamil", "radang.jpg", "radang.html");
+        artikel = new Artikel("Morning Sickness Atau Mual","Trimester 1", "mual.png", "mual.html");
         mListArtikel.add(artikel);
 
         artikelAdapter.notifyDataSetChanged();
