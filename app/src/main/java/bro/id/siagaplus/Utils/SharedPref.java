@@ -118,6 +118,12 @@ public class SharedPref {
         _context.startActivity(i);
     }
 
+    public void clearData(){
+        // Clearing all data from Shared Preferences
+        editor.clear();
+        editor.commit();
+    }
+
     /**
      * Quick check for login
      * **/
