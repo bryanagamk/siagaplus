@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import bro.id.siagaplus.Model.Note;
 
@@ -16,8 +19,22 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "notes_db";
+    private static final String DATABASE_NAME = "siagaplus_db";
 
+    // Table Names
+    private static final String TABLE_AGENDA = "agenda";
+    private static final String TABLE_CHECKLIST = "checklist";
+
+    // common column checklist names
+    private static final String KEY_ID = "id";
+    private static final String KEY_JENIS = "jenis";
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_CEK = "cek";
+
+    // todo_tag table create statement
+    private static final String CREATE_TABLE_CHECKLIST = "CREATE TABLE "
+            + TABLE_CHECKLIST + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_JENIS + " INTEGER,"
+            + KEY_TITLE + " STRING," + KEY_CEK + " INTEGER)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -29,6 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
 
         // create notes table
         db.execSQL(Note.CREATE_TABLE);
+        db.execSQL(CREATE_TABLE_CHECKLIST);
     }
 
     // Upgrading database
@@ -36,6 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + Note.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHECKLIST);
 
         // Create tables again
         onCreate(db);
@@ -142,5 +161,61 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         db.delete(Note.TABLE_NAME, Note.COLUMN_ID + " = ?",
                 new String[]{String.valueOf(note.getId())});
         db.close();
+    }
+
+
+    /**
+     * Creating Checklist
+     */
+    public long createChecklist(long id, long jenis, String title, int cek) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, id);
+        values.put(KEY_JENIS, jenis);
+        values.put(KEY_TITLE, title);
+        values.put(KEY_CEK, cek);
+
+        return db.insert(TABLE_CHECKLIST, null, values);
+    }
+
+    /**
+     * Updating a todo tag
+     */
+    public int updateChecklist(long id, String title) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID, id);
+
+        // updating row
+        return db.update(TABLE_CHECKLIST, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(id) });
+    }
+
+    /**
+     * Deleting a todo tag
+     */
+    public void deleteChecklist(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CHECKLIST, KEY_ID + " = ?",
+                new String[] { String.valueOf(id) });
+    }
+
+    // closing database
+    public void closeDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
+    }
+
+    /**
+     * get datetime
+     * */
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }
