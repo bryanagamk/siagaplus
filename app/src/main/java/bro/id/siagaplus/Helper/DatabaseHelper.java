@@ -1,5 +1,6 @@
 package bro.id.siagaplus.Helper;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.Model.Checklist;
 import bro.id.siagaplus.Model.Note;
 
@@ -32,22 +34,33 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
     private static final String KEY_TITLE = "title";
     private static final String KEY_CEK = "cek";
 
+    // column agenda tables
+    private static final String ID_AGENDA = "id";
+    private static final String TITLE_AGENDA = "title";
+    private static final String DATE_AGENDA = "date";
+
     // todo_tag table create statement
     private static final String CREATE_TABLE_CHECKLIST = "CREATE TABLE "
             + TABLE_CHECKLIST + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_JENIS + " INTEGER,"
             + KEY_TITLE + " STRING," + KEY_CEK + " INTEGER)";
+
+    private static final String CREATE_TABLE_AGENDA = "CREATE TABLE "
+            + TABLE_AGENDA + "(" + ID_AGENDA + " INTEGER PRIMARY KEY AUTOINCREMENT," + TITLE_AGENDA + " STRING,"
+            + DATE_AGENDA + " DATETIME)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     // Creating Tables
+    @SuppressLint("SQLiteString")
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         // create notes table
         db.execSQL(Note.CREATE_TABLE);
         db.execSQL(CREATE_TABLE_CHECKLIST);
+        db.execSQL(CREATE_TABLE_AGENDA);
     }
 
     // Upgrading database
@@ -56,6 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + Note.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHECKLIST);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_AGENDA);
 
         // Create tables again
         onCreate(db);
@@ -222,6 +236,111 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_CHECKLIST, KEY_ID + " = ?",
                 new String[] { String.valueOf(id) });
+    }
+
+    public long insertAgenda(String title, String date) {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        // `id` will be inserted automatically.
+        // no need to add them
+        values.put(TITLE_AGENDA, title);
+        values.put(DATE_AGENDA, date);
+
+        // insert row
+        long id = db.insert(TABLE_AGENDA, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public Agenda getAgenda(long id) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_AGENDA,
+                new String[]{ID_AGENDA, TITLE_AGENDA, DATE_AGENDA},
+                ID_AGENDA + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // prepare note object
+        Agenda agenda = new Agenda(
+                cursor.getString(cursor.getColumnIndex(TITLE_AGENDA)),
+                cursor.getInt(cursor.getColumnIndex(ID_AGENDA)),
+                cursor.getString(cursor.getColumnIndex(DATE_AGENDA)));
+
+        // close the db connection
+        cursor.close();
+
+        return agenda;
+    }
+
+    public List<Agenda> getAllAgenda() {
+        List<Agenda> agendas = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_AGENDA + " ORDER BY " +
+                DATE_AGENDA + " DESC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Agenda agenda = new Agenda();
+                agenda.setId(cursor.getInt(cursor.getColumnIndex(ID_AGENDA)));
+                agenda.setDate(cursor.getString(cursor.getColumnIndex(DATE_AGENDA)));
+                agenda.setTitle(cursor.getString(cursor.getColumnIndex(TITLE_AGENDA)));
+
+                agendas.add(agenda);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return notes list
+        return agendas;
+    }
+
+    public int getAgendasCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_AGENDA;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+
+        // return count
+        return count;
+    }
+
+    public int updateAgenda(Agenda agenda) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(TITLE_AGENDA, agenda.getTitle());
+        values.put(DATE_AGENDA, agenda.getDate());
+
+        // updating row
+        return db.update(TABLE_AGENDA, values, ID_AGENDA + " = ?",
+                new String[]{String.valueOf(agenda.getId())});
+    }
+
+    public void deleteAgenda(Agenda agenda) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_AGENDA, ID_AGENDA + " = ?",
+                new String[]{String.valueOf(agenda.getId())});
+        db.close();
     }
 
     // closing database

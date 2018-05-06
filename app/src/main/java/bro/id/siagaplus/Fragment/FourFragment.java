@@ -3,7 +3,6 @@ package bro.id.siagaplus.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,7 +83,6 @@ public class FourFragment extends Fragment {
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
-        getAgenda();
         getChecklist();
         getArtikel();
 
@@ -106,15 +104,6 @@ public class FourFragment extends Fragment {
         });
 
         return rootView;
-    }
-    private void getAgenda(){
-
-        Agenda agenda = new Agenda("6/08/2018","11.00","bimbingan pak ali");
-        mlistAgenda.add(agenda);
-
-
-
-        agendaAdapter.notifyDataSetChanged();
     }
 
     private void getChecklist(){

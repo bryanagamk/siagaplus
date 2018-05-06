@@ -5,37 +5,33 @@ package bro.id.siagaplus.Model;
  */
 
 public class Agenda {
-    private String tgl_agenda,waktu_agenda,title_agenda;
+    private String title;
+    private String date;
     private int id;
 
-    public Agenda(String tgl_agenda, String waktu_agenda, String title_agenda) {
-        this.tgl_agenda = tgl_agenda;
-        this.waktu_agenda = waktu_agenda;
-        this.title_agenda = title_agenda;
+    public Agenda() {
     }
 
-    public String getTgl_agenda() {
-        return tgl_agenda;
+    public Agenda(String title, int id, String date) {
+        this.id = id;
+        this.date = date;
+        this.title = title;;
     }
 
-    public void setTgl_agenda(String tgl_agenda) {
-        this.tgl_agenda = tgl_agenda;
+    public String getTitle() {
+        return title;
     }
 
-    public String getWaktu_agenda() {
-        return waktu_agenda;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setWaktu_agenda(String waktu_agenda) {
-        this.waktu_agenda = waktu_agenda;
+    public String getDate() {
+        return date;
     }
 
-    public String getTitle_agenda() {
-        return title_agenda;
-    }
-
-    public void setTitle_agenda(String title_agenda) {
-        this.title_agenda = title_agenda;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public int getId() {

@@ -34,9 +34,9 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(AgendaAdapter.ViewHolder holder, int position) {
-        holder.tgl.setText(mListdata.get(position).getTgl_agenda());
+        /*holder.tgl.setText(mListdata.get(position).getTgl_agenda());
         holder.waktu.setText(mListdata.get(position).getWaktu_agenda());
-        holder.keterangan.setText(mListdata.get(position).getTitle_agenda());
+        holder.keterangan.setText(mListdata.get(position).getTitle_agenda());*/
     }
 
     @Override
