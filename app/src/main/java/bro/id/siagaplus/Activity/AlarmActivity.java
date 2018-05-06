@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.R;
 
 public class AlarmActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class AlarmActivity extends AppCompatActivity {
     private static AlarmActivity inst;
     private TextView alarmTextView;
     Calendar calendar = null;
+    DatabaseHelper db;
 
     public static AlarmActivity instance() {
         return inst;
@@ -43,6 +45,9 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
         alarmTextView = (TextView) findViewById(R.id.alarmText);
+
+        db = new DatabaseHelper(getApplicationContext());
+
     }
 
     @TargetApi(Build.VERSION_CODES.M)

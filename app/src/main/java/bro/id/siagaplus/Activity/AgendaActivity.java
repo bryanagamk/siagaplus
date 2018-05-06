@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.R;
 import bro.id.siagaplus.Utils.SharedPref;
 
@@ -38,6 +39,7 @@ public class AgendaActivity extends AppCompatActivity
     public String username;
     private SharedPref sharedPref;
     Date date, startAgenda;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class AgendaActivity extends AppCompatActivity
         setContentView(R.layout.activity_agenda);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        db = new DatabaseHelper(getApplicationContext());
 
         sharedPref = new SharedPref(getApplicationContext());
         HashMap<String, String> user = sharedPref.getUserDetails();
@@ -91,6 +95,11 @@ public class AgendaActivity extends AppCompatActivity
 
             mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
         }
+
+        /*long id1 = db.insertAgenda("Tes", String.valueOf(date));
+        Log.d(String.valueOf(date), "onCreate: date");
+        Log.d(String.valueOf(db.insertAgenda("Tes", String.valueOf(date))), "tes ");*/
+
     }
 
     private void mockList(List<CalendarEvent> eventList) {
@@ -107,9 +116,10 @@ public class AgendaActivity extends AppCompatActivity
                 startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
                 endTime1 = startTime1;
                 BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "Iceland",
-                        ContextCompat.getColor(this, R.color.colorPrimary), startTime1, endTime1, true);
+                        ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
                 eventList.add(event1);
-
+                Log.d(String.valueOf(startTime1.getTime()), "mockList: startTime");
+                db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
             }
             i++;
         }
@@ -138,9 +148,9 @@ public class AgendaActivity extends AppCompatActivity
                     startTime1.add(Calendar.MONTH, 1);
                     endTime1 = startTime1;
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS",
-                            ContextCompat.getColor(this, R.color.colorAccentNote), startTime1, endTime1, true);
+                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
                     eventList.add(event1);
-
+                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
                 }
                 i++;
             }
@@ -155,8 +165,9 @@ public class AgendaActivity extends AppCompatActivity
                     startTime1.add(Calendar.MONTH, 1);
                     endTime1 = startTime1;
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
+                            ContextCompat.getColor(this, R.color.agenda3), startTime1, endTime1, true);
                     eventList.add(event1);
+                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
                 }
                 i++;
             }
@@ -174,9 +185,9 @@ public class AgendaActivity extends AppCompatActivity
                     startTime1.add(Calendar.DATE, 14);
                     endTime1 = startTime1;
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS",
-                            ContextCompat.getColor(this, R.color.colorAccentNote), startTime1, endTime1, true);
+                            ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
                     eventList.add(event1);
-
+                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
                 }
                 i++;
             }
@@ -193,9 +204,9 @@ public class AgendaActivity extends AppCompatActivity
                     startTime1.add(Calendar.DATE, 14);
                     endTime1 = startTime1;
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
+                            ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
                     eventList.add(event1);
-
+                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
                 }
                 i++;
             }
@@ -215,7 +226,7 @@ public class AgendaActivity extends AppCompatActivity
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik (KIA)",
                             ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
                     eventList.add(event1);
-
+                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
                 }
                 i++;
             }

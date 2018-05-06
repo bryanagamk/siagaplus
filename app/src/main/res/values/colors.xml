@@ -19,4 +19,9 @@
     <color name="hint_enter_note">#89c3c3c3</color>
     <color name="timestamp">#858585</color>
     <color name="note_list_text">#232323</color>
+    <color name="agenda1">#8e44ad</color>
+    <color name="agenda2">#27ae60</color>
+    <color name="agenda3">#16a085</color>
+    <color name="agenda4">#c0392b</color>
+    <color name="agenda5">#f39c12</color>
 </resources>
