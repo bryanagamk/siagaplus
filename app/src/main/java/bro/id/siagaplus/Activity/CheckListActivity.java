@@ -15,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -143,7 +141,7 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
             rv_checklist3.setAdapter(mListAdapter3);
             rv_checklist4.setAdapter(mListAdapter4);
 
-            initDatasblmhamil();
+            /*initDatasblmhamil();*/
 
             mListAdapter1.notifyDataSetChanged();
             mListAdapter2.notifyDataSetChanged();
@@ -169,7 +167,7 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
             rv_checklist3.setAdapter(mListAdapter3);
             rv_checklist5.setAdapter(mListAdapter4);
 
-            initrimesterchecklist();
+            /*initrimesterchecklist();*/
 
             mListAdapter1.notifyDataSetChanged();
             mListAdapter2.notifyDataSetChanged();
@@ -258,7 +256,7 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
         return true;
     }
 
-    private void initDatasblmhamil(){
+    /*private void initDatasblmhamil(){
         Checklist checklist1 = new Checklist("Tes Urin",false);
         sblm_hamil_1.add(checklist1);
         checklist1 = new Checklist("Tes Urin",false);
@@ -398,6 +396,6 @@ public class CheckListActivity extends AppCompatActivity implements NavigationVi
         checklist1 = new Checklist("Pemeriksaan virus TORCH digunakan untuk mengetahui virus yang bisa\n" +
                 "menyebabkan berbagai penyakit bawaan yang bisa diturunkan ke janin",false);
         trimester1_1.add(checklist1);
-    }
+    }*/
 
 }
