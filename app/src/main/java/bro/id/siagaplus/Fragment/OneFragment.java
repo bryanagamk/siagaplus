@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,13 +115,18 @@ public class OneFragment extends Fragment {
 
     private void getAgenda(){
         rawdataAgenda = db.getAllAgenda();
-        if (db.getAllAgenda() != null){
-            Log.d(String.valueOf(db.getAllAgenda()), "getAgenda: ");
-            for (int i = 0;i < 3;i++){
-                mlistAgenda.add(rawdataAgenda.get(i));
-            }
-            agendaAdapter.notifyDataSetChanged();
-        }
+     if (rawdataAgenda.isEmpty()){
+         Agenda agenda = new Agenda();
+         agenda.setDate("no upcoming agenda");
+         agenda.setTitle("-");
+         agenda.setId(0);
+     } else {
+         for (int i = 0;i < 3;i++){
+             mlistAgenda.add(rawdataAgenda.get(i));
+         }
+     }
+
+        agendaAdapter.notifyDataSetChanged();
     }
         private void getChecklist(){
 
