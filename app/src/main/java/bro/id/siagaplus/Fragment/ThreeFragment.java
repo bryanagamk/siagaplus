@@ -119,8 +119,13 @@ public class ThreeFragment extends Fragment {
             agenda.setDate("no upcoming agenda");
             agenda.setTitle("-");
             agenda.setId(0);
-        } else {
+            mlistAgenda.add(agenda);
+        } else if (rawdataAgenda.size() < 3){
             for (int i = 0;i < 3;i++){
+                mlistAgenda.add(rawdataAgenda.get(i));
+            }
+        } else {
+            for (int i = 0;i < rawdataAgenda.size();i++){
                 mlistAgenda.add(rawdataAgenda.get(i));
             }
         }
