@@ -115,8 +115,15 @@ public class FiveFragment extends Fragment {
 
     private void getAgenda(){
         rawdataAgenda = db.getAllAgenda();
-        for (int i = 27;i < 30;i++){
-            mlistAgenda.add(rawdataAgenda.get(i));
+        if (rawdataAgenda.isEmpty()){
+            Agenda agenda = new Agenda();
+            agenda.setDate("no upcoming agenda");
+            agenda.setTitle("-");
+            agenda.setId(0);
+        } else {
+            for (int i = 0;i < 3;i++){
+                mlistAgenda.add(rawdataAgenda.get(i));
+            }
         }
         agendaAdapter.notifyDataSetChanged();
     }
