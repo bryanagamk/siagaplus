@@ -282,12 +282,11 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         return agenda;
     }
 
-    public List<Agenda> getAllAgenda() {
-        List<Agenda> agendas = new ArrayList<>();
+    public ArrayList<Agenda> getAllAgenda() {
+        ArrayList<Agenda> agendas = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_AGENDA + " ORDER BY " +
-                DATE_AGENDA + " DESC";
+        String selectQuery = "SELECT  * FROM " + TABLE_AGENDA + "";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

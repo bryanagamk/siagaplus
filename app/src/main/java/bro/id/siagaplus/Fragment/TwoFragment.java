@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ import bro.id.siagaplus.R;
 public class TwoFragment extends Fragment {
 
 
-    ArrayList<Agenda> mlistAgenda;
+    ArrayList<Agenda> mlistAgenda,rawdataAgenda;
     ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
@@ -56,7 +57,7 @@ public class TwoFragment extends Fragment {
 
         mContext = this.getActivity().getApplicationContext();
         db = new DatabaseHelper(mContext);
-
+        rawdataAgenda = new ArrayList<>();
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
@@ -82,6 +83,9 @@ public class TwoFragment extends Fragment {
         rvChecklist.setLayoutManager(llmChecklist);
         rvArtikel.setLayoutManager(llmArtikel);
 
+        rvAgenda.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+        rvChecklist.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+
         agendaAdapter = new AgendaAdapter(mContext,mlistAgenda);
         checklistAdapter = new ChecklistAdapter(mContext,mListChecklist);
         artikelAdapter = new ArtikelAdapter(mContext, mListArtikel);
@@ -90,6 +94,7 @@ public class TwoFragment extends Fragment {
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
+        getAgenda();
         getChecklist();
         getArtikel();
 
@@ -113,6 +118,14 @@ public class TwoFragment extends Fragment {
 
         return rootView;
 
+    }
+
+    private void getAgenda(){
+        rawdataAgenda = db.getAllAgenda();
+        for (int i = 6;i < 9;i++){
+            mlistAgenda.add(rawdataAgenda.get(i));
+        }
+        agendaAdapter.notifyDataSetChanged();
     }
 
     private void getChecklist(){

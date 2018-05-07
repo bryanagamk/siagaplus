@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ import bro.id.siagaplus.R;
 
 public class FourFragment extends Fragment {
 
-    ArrayList<Agenda> mlistAgenda;
+    ArrayList<Agenda> mlistAgenda,rawdataAgenda;
     ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
@@ -56,6 +57,7 @@ public class FourFragment extends Fragment {
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
         rawdataCheclist = new ArrayList<>();
+        rawdataAgenda = new ArrayList<>();
 
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentfour);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentfour);
@@ -79,10 +81,14 @@ public class FourFragment extends Fragment {
         checklistAdapter = new ChecklistAdapter(mContext,mListChecklist);
         artikelAdapter = new ArtikelAdapter(mContext, mListArtikel);
 
+        rvAgenda.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+        rvChecklist.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+
         rvAgenda.setAdapter(agendaAdapter);
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
+        getAgenda();
         getChecklist();
         getArtikel();
 
@@ -104,6 +110,14 @@ public class FourFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void getAgenda(){
+        rawdataAgenda = db.getAllAgenda();
+        for (int i = 24;i < 27;i++){
+            mlistAgenda.add(rawdataAgenda.get(i));
+        }
+        agendaAdapter.notifyDataSetChanged();
     }
 
     private void getChecklist(){

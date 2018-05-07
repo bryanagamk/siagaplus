@@ -27,7 +27,7 @@ import bro.id.siagaplus.R;
 
 public class OneFragment extends Fragment {
 
-    ArrayList<Agenda> mlistAgenda;
+    ArrayList<Agenda> mlistAgenda, rawdataAgenda;
     ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
@@ -55,6 +55,7 @@ public class OneFragment extends Fragment {
         mContext = this.getActivity().getApplicationContext();
         final Bundle myBundle = new Bundle();
         mlistAgenda = new ArrayList<>();
+        rawdataAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         rawdataCheclist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
@@ -87,6 +88,7 @@ public class OneFragment extends Fragment {
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
+        getAgenda();
         getChecklist();
         getArtikel();
 
@@ -111,7 +113,13 @@ public class OneFragment extends Fragment {
         return rootView;
     }
 
-
+    private void getAgenda(){
+        rawdataAgenda = db.getAllAgenda();
+        for (int i = 0;i < 3;i++){
+            mlistAgenda.add(rawdataAgenda.get(i));
+        }
+        agendaAdapter.notifyDataSetChanged();
+    }
         private void getChecklist(){
 
             rawdataCheclist = db.getAllChecklist(0);

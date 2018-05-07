@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.R;
@@ -34,9 +35,10 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(AgendaAdapter.ViewHolder holder, int position) {
-        /*holder.tgl.setText(mListdata.get(position).getTgl_agenda());
-        holder.waktu.setText(mListdata.get(position).getWaktu_agenda());
-        holder.keterangan.setText(mListdata.get(position).getTitle_agenda());*/
+        String[] date = mListdata.get(position).getDate().split(" ");
+        holder.tgl.setText(date[2] + " " + date[1] + " "+date[5]);
+        holder.waktu.setText(date[3]);
+        holder.keterangan.setText(mListdata.get(position).getTitle());
     }
 
     @Override
@@ -51,6 +53,7 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
             tgl = itemView.findViewById(R.id.item_tanggal_agenda);
             waktu = itemView.findViewById(R.id.item_waktu_agenda);
             keterangan = itemView.findViewById(R.id.item_akitifitas_agenda);
+            waktu.setVisibility(View.GONE);
         }
 
     }

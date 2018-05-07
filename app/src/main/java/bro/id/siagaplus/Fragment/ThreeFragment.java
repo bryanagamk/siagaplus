@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import bro.id.siagaplus.Activity.ArtikelActivity;
+import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
 import bro.id.siagaplus.Adapter.ArtikelAdapter;
 import bro.id.siagaplus.Adapter.ChecklistAdapter;
@@ -24,7 +26,7 @@ import bro.id.siagaplus.R;
 
 public class ThreeFragment extends Fragment {
 
-    ArrayList<Agenda> mlistAgenda;
+    ArrayList<Agenda> mlistAgenda,rawdataAgenda;
     ArrayList<Checklist> mListChecklist, rawdataCheclist;
     ArrayList<Artikel> mListArtikel;
     RecyclerView rvAgenda,rvChecklist,rvArtikel;
@@ -56,7 +58,7 @@ public class ThreeFragment extends Fragment {
         mlistAgenda = new ArrayList<>();
         mListChecklist = new ArrayList<>();
         mListArtikel = new ArrayList<>();
-
+        rawdataAgenda = new ArrayList<>();
         rvAgenda = rootView.findViewById(R.id.rv_agenda_fragmentthree);
         rvChecklist = rootView.findViewById(R.id.rv_checklist_fragmentthree);
         rvArtikel = rootView.findViewById(R.id.rv_artikel_fragmentthree);
@@ -65,7 +67,7 @@ public class ThreeFragment extends Fragment {
 
         LinearLayoutManager llmChecklist = new LinearLayoutManager(mContext);
         llmChecklist.setOrientation(LinearLayoutManager.VERTICAL);
-        Bundle myBundle = new Bundle();
+        final Bundle myBundle = new Bundle();
 
         myBundle.putInt("id",2);
 
@@ -79,14 +81,25 @@ public class ThreeFragment extends Fragment {
         checklistAdapter = new ChecklistAdapter(mContext,mListChecklist);
         artikelAdapter = new ArtikelAdapter(mContext, mListArtikel);
 
+        rvAgenda.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+        rvChecklist.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+
         rvAgenda.setAdapter(agendaAdapter);
         rvChecklist.setAdapter(checklistAdapter);
         rvArtikel.setAdapter(artikelAdapter);
 
+        getAgenda();
         getChecklist();
         getArtikel();
 
-
+        rootView.findViewById(R.id.link_checklist_fragmentthree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CheckListActivity.class);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
 
         rootView.findViewById(R.id.link_artikel_fragmentthree).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +110,14 @@ public class ThreeFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void getAgenda(){
+        rawdataAgenda = db.getAllAgenda();
+        for (int i = 15;i < 18;i++){
+            mlistAgenda.add(rawdataAgenda.get(i));
+        }
+        agendaAdapter.notifyDataSetChanged();
     }
 
     private void getChecklist(){
