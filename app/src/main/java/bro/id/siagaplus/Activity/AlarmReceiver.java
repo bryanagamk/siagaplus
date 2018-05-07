@@ -9,16 +9,28 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v4.content.WakefulBroadcastReceiver;
+import android.util.Log;
+
+import java.util.List;
+
+import bro.id.siagaplus.Helper.DatabaseHelper;
+import bro.id.siagaplus.Model.Agenda;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     Ringtone ringtone;
+    DatabaseHelper db;
 
     @Override
     public void onReceive(final Context context, Intent intent) {
         //this will update the UI with message
         AlarmActivity inst = AlarmActivity.instance();
-        inst.setAlarmText("Wake up! Wake up!");
+        List<Agenda> allAgenda = db.getAllAgenda();
+        for (Agenda agenda : allAgenda){
+            Log.d("onCreate: Agenda Title", agenda.getTitle());
+            inst.setAlarmText(agenda.getTitle());
+        }
+
 
         //this will sound the alarm tone
         //this will sound the alarm once, if you wish to

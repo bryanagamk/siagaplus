@@ -38,8 +38,9 @@ public class AgendaActivity extends AppCompatActivity
     private static final String LOG_TAG = "JAM" ;
     public String username;
     private SharedPref sharedPref;
-    Date date, startAgenda;
+    Date date, tgl = null;
     DatabaseHelper db;
+    AlarmActivity alarmActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,6 @@ public class AgendaActivity extends AppCompatActivity
 
         try{
             date = format.parse(tgl);
-            Log.d(String.valueOf(date), "onCreate: fikkri");
         } catch (ParseException e){
             e.printStackTrace();
         }
@@ -96,10 +96,6 @@ public class AgendaActivity extends AppCompatActivity
             mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
         }
 
-        /*long id1 = db.insertAgenda("Tes", String.valueOf(date));
-        Log.d(String.valueOf(date), "onCreate: date");
-        Log.d(String.valueOf(db.insertAgenda("Tes", String.valueOf(date))), "tes ");*/
-
     }
 
     private void mockList(List<CalendarEvent> eventList) {
@@ -119,7 +115,34 @@ public class AgendaActivity extends AppCompatActivity
                         ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
                 eventList.add(event1);
                 Log.d(String.valueOf(startTime1.getTime()), "mockList: startTime");
-                db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                // Set Alarm
+                long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                String dbTgl = db.getAgenda(id).getDate();
+
+                SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                try{
+                    tgl = format.parse(dbTgl);
+                    Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                } catch (ParseException e){
+                    e.printStackTrace();
+                }
+
+                Log.d("Enter", "onCreate: Tes");
+                Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                Calendar cal = Calendar.getInstance();
+                Calendar alarm = Calendar.getInstance();
+                cal.setTime(tgl);
+
+                Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                alarmActivity.setAlarmOn(cal);
             }
             i++;
         }
@@ -151,6 +174,34 @@ public class AgendaActivity extends AppCompatActivity
                             ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
                     eventList.add(event1);
                     db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    String dbTgl = db.getAgenda(id).getDate();
+
+                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                    try{
+                        tgl = format.parse(dbTgl);
+                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Enter", "onCreate: Tes");
+                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                    Calendar cal = Calendar.getInstance();
+                    Calendar alarm = Calendar.getInstance();
+                    cal.setTime(tgl);
+
+                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -168,6 +219,34 @@ public class AgendaActivity extends AppCompatActivity
                             ContextCompat.getColor(this, R.color.agenda3), startTime1, endTime1, true);
                     eventList.add(event1);
                     db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    String dbTgl = db.getAgenda(id).getDate();
+
+                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                    try{
+                        tgl = format.parse(dbTgl);
+                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Enter", "onCreate: Tes");
+                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                    Calendar cal = Calendar.getInstance();
+                    Calendar alarm = Calendar.getInstance();
+                    cal.setTime(tgl);
+
+                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -188,6 +267,35 @@ public class AgendaActivity extends AppCompatActivity
                             ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
                     eventList.add(event1);
                     db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    String dbTgl = db.getAgenda(id).getDate();
+
+                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                    try{
+                        tgl = format.parse(dbTgl);
+                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Enter", "onCreate: Tes");
+                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                    Calendar cal = Calendar.getInstance();
+                    Calendar alarm = Calendar.getInstance();
+                    cal.setTime(tgl);
+
+                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                    alarmActivity.setAlarmOn(cal);
+
                 }
                 i++;
             }
@@ -207,6 +315,34 @@ public class AgendaActivity extends AppCompatActivity
                             ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
                     eventList.add(event1);
                     db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    String dbTgl = db.getAgenda(id).getDate();
+
+                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                    try{
+                        tgl = format.parse(dbTgl);
+                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Enter", "onCreate: Tes");
+                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                    Calendar cal = Calendar.getInstance();
+                    Calendar alarm = Calendar.getInstance();
+                    cal.setTime(tgl);
+
+                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -227,6 +363,34 @@ public class AgendaActivity extends AppCompatActivity
                             ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
                     eventList.add(event1);
                     db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    String dbTgl = db.getAgenda(id).getDate();
+
+                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+
+                    try{
+                        tgl = format.parse(dbTgl);
+                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
+                    } catch (ParseException e){
+                        e.printStackTrace();
+                    }
+
+                    Log.d("Enter", "onCreate: Tes");
+                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+
+                    Calendar cal = Calendar.getInstance();
+                    Calendar alarm = Calendar.getInstance();
+                    cal.setTime(tgl);
+
+                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
+                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
+                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
+                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+
+                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
