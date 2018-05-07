@@ -144,7 +144,7 @@ public class AgendaActivity extends AppCompatActivity
                 Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                 Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                alarmActivity.setAlarmOn(cal);
+//                alarmActivity.setAlarmOn(cal);
             }
             i++;
         }
@@ -205,7 +205,7 @@ public class AgendaActivity extends AppCompatActivity
                     Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                     Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                    alarmActivity.setAlarmOn(cal);
+//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -250,7 +250,7 @@ public class AgendaActivity extends AppCompatActivity
                     Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                     Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                    alarmActivity.setAlarmOn(cal);
+//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -298,7 +298,7 @@ public class AgendaActivity extends AppCompatActivity
                     Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                     Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                    alarmActivity.setAlarmOn(cal);
+//                    alarmActivity.setAlarmOn(cal);
 
                 }
                 i++;
@@ -346,7 +346,7 @@ public class AgendaActivity extends AppCompatActivity
                     Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                     Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                    alarmActivity.setAlarmOn(cal);
+//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
@@ -394,7 +394,7 @@ public class AgendaActivity extends AppCompatActivity
                     Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
                     Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
 
-                    alarmActivity.setAlarmOn(cal);
+//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
