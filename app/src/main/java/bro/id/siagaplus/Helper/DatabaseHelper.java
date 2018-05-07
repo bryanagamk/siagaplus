@@ -75,6 +75,18 @@ public class DatabaseHelper extends SQLiteOpenHelper  {
         onCreate(db);
     }
 
+    // Delete all table
+    public void deleteAll(){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("delete from " + Note.TABLE_NAME);
+        db.execSQL("delete from " + TABLE_AGENDA);
+        db.execSQL("delete from " + TABLE_CHECKLIST);
+
+        db.close();
+    }
+
     public long insertNote(String note) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import bro.id.siagaplus.Helper.DatabaseHelper;
 import bro.id.siagaplus.R;
 import bro.id.siagaplus.Utils.SharedPref;
 
@@ -23,6 +24,7 @@ public class SettingActivity extends AppCompatActivity
     public String username;
     private Switch switch1;
     private SharedPref sharedPref;
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class SettingActivity extends AppCompatActivity
         sharedPref = new SharedPref(getApplicationContext());
         username = getIntent().getStringExtra("username");
         switch1 = (Switch) findViewById(R.id.switch1);
+
+        db = new DatabaseHelper(getApplicationContext());
 
         //set the switch to ON
         switch1.setChecked(false);
@@ -57,6 +61,7 @@ public class SettingActivity extends AppCompatActivity
                                 public void onClick(DialogInterface dialog,int id) {
                                     // jika tombol diklik, maka akan menutup activity ini
                                     sharedPref.clearData();
+                                    db.deleteAll();
                                     // After clear redirect user to User1 Activity
                                     Intent i = new Intent(getApplicationContext(), User1Activity.class);
                                     // Closing all the Activities

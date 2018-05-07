@@ -137,6 +137,8 @@ public class AgendaActivity extends AppCompatActivity
                 Calendar alarm = Calendar.getInstance();
                 cal.setTime(tgl);
 
+                alarmActivity = new AlarmActivity();
+
                 Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
                 Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
                 Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
@@ -152,10 +154,12 @@ public class AgendaActivity extends AppCompatActivity
 
         int i = 0;
         Calendar mulaiHamil = Calendar.getInstance();
+        Calendar melahirkan = Calendar.getInstance();
         Calendar today = Calendar.getInstance();
         mulaiHamil.setTime(date);
-        mulaiHamil.add(Calendar.MONTH, 9);
-        long deff = mulaiHamil.getTimeInMillis() - today.getTimeInMillis();
+        melahirkan = mulaiHamil;
+        melahirkan.add(Calendar.MONTH, 9);
+        long deff = melahirkan.getTimeInMillis() - today.getTimeInMillis();
         long aDay = deff / (24 * 60* 60 * 1000);
         if (aDay <= 90){
             Log.d(String.valueOf(aDay), "mockListPass Trisemester 1");
