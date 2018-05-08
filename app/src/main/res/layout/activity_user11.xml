@@ -60,4 +60,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:srcCompat="@drawable/doktercowok" />
 
+    <include layout="@layout/content_agenda"
+        android:visibility="invisible"/>
+
 </android.support.constraint.ConstraintLayout>

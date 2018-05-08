@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import bro.id.siagaplus.Activity.AgendaActivity;
 import bro.id.siagaplus.Activity.ArtikelActivity;
 import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
@@ -92,6 +93,16 @@ public class ThreeFragment extends Fragment {
         getChecklist();
         getArtikel();
 
+        rootView.findViewById(R.id.link_agenda_fragmentthree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), AgendaActivity.class);
+                myBundle.putInt("id",0);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
+
         rootView.findViewById(R.id.link_checklist_fragmentthree).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +131,7 @@ public class ThreeFragment extends Fragment {
             agenda.setTitle("-");
             agenda.setId(0);
             mlistAgenda.add(agenda);
-        } else if (rawdataAgenda.size() < 3){
+        } else if (rawdataAgenda.size() > 3){
             for (int i = 0;i < 3;i++){
                 mlistAgenda.add(rawdataAgenda.get(i));
             }
@@ -129,6 +140,7 @@ public class ThreeFragment extends Fragment {
                 mlistAgenda.add(rawdataAgenda.get(i));
             }
         }
+
         agendaAdapter.notifyDataSetChanged();
     }
 

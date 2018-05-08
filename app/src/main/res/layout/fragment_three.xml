@@ -75,7 +75,7 @@
 
                         </android.support.v7.widget.RecyclerView>
                         <TextView
-
+                            android:id="@+id/link_agenda_fragmentthree"
                             android:fontFamily="@font/myriad_pro_regular"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

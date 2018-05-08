@@ -44,17 +44,17 @@
         android:layout_margin="10dp"
         >
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/dinkes"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/dinkes" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puskesmas Pucang Sewu\nJl. PUCANG ANOM TIMUR 72 Surabaya"
+            android:text="Dinas Kesehatan Kota Surabaya\nJl. Raya Jemur Sari No.197, Sidosermo, Wonocolo, Kota SBY, Jawa Timur 60239"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             />

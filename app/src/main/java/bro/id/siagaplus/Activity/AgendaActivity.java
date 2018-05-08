@@ -111,40 +111,10 @@ public class AgendaActivity extends AppCompatActivity
                 startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
                 startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
                 endTime1 = startTime1;
-                BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "Iceland",
+                BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
                         ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
                 eventList.add(event1);
                 Log.d(String.valueOf(startTime1.getTime()), "mockList: startTime");
-
-                // Set Alarm
-                long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
-
-                String dbTgl = db.getAgenda(id).getDate();
-
-                SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
-
-                try{
-                    tgl = format.parse(dbTgl);
-                    Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                } catch (ParseException e){
-                    e.printStackTrace();
-                }
-
-                Log.d("Enter", "onCreate: Tes");
-                Log.d(String.valueOf(tgl), "onCreate: tgl");
-
-                Calendar cal = Calendar.getInstance();
-                Calendar alarm = Calendar.getInstance();
-                cal.setTime(tgl);
-
-                alarmActivity = new AlarmActivity();
-
-                Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                alarmActivity.setAlarmOn(cal);
             }
             i++;
         }
@@ -161,240 +131,223 @@ public class AgendaActivity extends AppCompatActivity
         melahirkan.add(Calendar.MONTH, 9);
         long deff = melahirkan.getTimeInMillis() - today.getTimeInMillis();
         long aDay = deff / (24 * 60* 60 * 1000);
+        long dayBef = 270 - aDay;
+        long jmlh;
+        /*Trimester 3*/
         if (aDay <= 90){
-            Log.d(String.valueOf(aDay), "mockListPass Trisemester 1");
+            /*
+             * Seminggu Sekali
+             */
+            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
             while(i <= aDay){
                 Calendar startTime1 = Calendar.getInstance();
                 startTime1.add(Calendar.DATE, i);
                 Calendar endTime1 = Calendar.getInstance();
 
                 if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-                    Log.d("COK","Masuk If");
+
                     startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
                     startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    startTime1.add(Calendar.MONTH, 1);
                     endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS",
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
                             ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
                     eventList.add(event1);
-                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    // Insert SQLite
+//                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
                     // Set Alarm
-                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
-                    String dbTgl = db.getAgenda(id).getDate();
-
-                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
-
-                    try{
-                        tgl = format.parse(dbTgl);
-                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
-
-                    Log.d("Enter", "onCreate: Tes");
-                    Log.d(String.valueOf(tgl), "onCreate: tgl");
-
-                    Calendar cal = Calendar.getInstance();
-                    Calendar alarm = Calendar.getInstance();
-                    cal.setTime(tgl);
-
-                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
-            while(i <= aDay){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-                    Log.d("COK","Masuk If");
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    startTime1.add(Calendar.MONTH, 1);
-                    endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda3), startTime1, endTime1, true);
-                    eventList.add(event1);
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
-
-                    // Set Alarm
-                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
-
-                    String dbTgl = db.getAgenda(id).getDate();
-
-                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
-
-                    try{
-                        tgl = format.parse(dbTgl);
-                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
-
-                    Log.d("Enter", "onCreate: Tes");
-                    Log.d(String.valueOf(tgl), "onCreate: tgl");
-
-                    Calendar cal = Calendar.getInstance();
-                    Calendar alarm = Calendar.getInstance();
-                    cal.setTime(tgl);
-
-                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                    alarmActivity.setAlarmOn(cal);
-                }
-                i++;
-            }
-        } else if (aDay > 90 || aDay <= 180){
+        } else if (aDay > 90 && aDay <= 180){
             Log.d(String.valueOf(aDay), "mockListPass Trisemester 2");
-            while(i <= aDay){
+
+            jmlh = 180 - dayBef;
+            while(i <= jmlh){
                 Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
+                startTime1.add(Calendar.DATE, i*2);
                 Calendar endTime1 = Calendar.getInstance();
 
                 if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-                    Log.d("COK","Masuk If");
+
                     startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
                     startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    startTime1.add(Calendar.DATE, 14);
                     endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS",
+
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
                             ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
                     eventList.add(event1);
-                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+//                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
                     // Set Alarm
-                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
-
-                    String dbTgl = db.getAgenda(id).getDate();
-
-                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
-
-                    try{
-                        tgl = format.parse(dbTgl);
-                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
-
-                    Log.d("Enter", "onCreate: Tes");
-                    Log.d(String.valueOf(tgl), "onCreate: tgl");
-
-                    Calendar cal = Calendar.getInstance();
-                    Calendar alarm = Calendar.getInstance();
-                    cal.setTime(tgl);
-
-                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                    alarmActivity.setAlarmOn(cal);
-
                 }
                 i++;
             }
 
-            while(i <= aDay){
+            while(i <= jmlh){
                 Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
+                startTime1.add(Calendar.DATE, i*2);
                 Calendar endTime1 = Calendar.getInstance();
-                Log.d(String.valueOf(startTime1.get(Calendar.DAY_OF_WEEK)), String.valueOf(Calendar.MONDAY));
+
                 if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-                    Log.d("COK","Masuk If");
+
                     startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
                     startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    startTime1.add(Calendar.DATE, 14);
                     endTime1 = startTime1;
+
                     BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
                             ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
                     eventList.add(event1);
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+//                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
 
                     // Set Alarm
-                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+                }
+                i++;
+            }
+            /*
+             * Seminggu Sekali
+             */
+            jmlh = 90;
+            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
+            while(i <= jmlh){
+                Calendar startTime1 = Calendar.getInstance();
+                startTime1.add(Calendar.DATE, i);
+                Calendar endTime1 = Calendar.getInstance();
 
-                    String dbTgl = db.getAgenda(id).getDate();
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
 
-                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+                    endTime1 = startTime1;
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
+                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
+                    eventList.add(event1);
 
-                    try{
-                        tgl = format.parse(dbTgl);
-                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
+                    // Insert SQLite
+//                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
-                    Log.d("Enter", "onCreate: Tes");
-                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+                    // Set Alarm
 
-                    Calendar cal = Calendar.getInstance();
-                    Calendar alarm = Calendar.getInstance();
-                    cal.setTime(tgl);
-
-                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                    alarmActivity.setAlarmOn(cal);
                 }
                 i++;
             }
 
-        } else {
-            Log.d(String.valueOf(aDay), "mockListPass Trisemester 3");
-            while(i <= aDay){
+        } else if (aDay > 180){
+            jmlh = 90 - dayBef;
+            /*Seminggu Sekali*/
+            Log.d(String.valueOf(aDay), "mockListPass Trisemester 1");
+            while(i <= jmlh){
                 Calendar startTime1 = Calendar.getInstance();
                 startTime1.add(Calendar.DATE, i);
                 Calendar endTime1 = Calendar.getInstance();
-                Log.d(String.valueOf(startTime1.get(Calendar.DAY_OF_WEEK)), String.valueOf(Calendar.MONDAY));
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-                    Log.d("COK","Masuk If");
+
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
                     startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
                     startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
                     endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik (KIA)",
+
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
                             ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
                     eventList.add(event1);
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+
+//                    db.insertAgenda("Periksa ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
                     // Set Alarm
-                    long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+                }
+                i++;
+            }
+            /*Sebulan Sekali*/
+            while(i <= jmlh){
+                Calendar startTime1 = Calendar.getInstance();
+                startTime1.add(Calendar.MONTH, 1);
+                startTime1.add(Calendar.DATE, i);
+                Calendar endTime1 = Calendar.getInstance();
 
-                    String dbTgl = db.getAgenda(id).getDate();
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
 
-                    SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+                    endTime1 = startTime1;
 
-                    try{
-                        tgl = format.parse(dbTgl);
-                        Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                    } catch (ParseException e){
-                        e.printStackTrace();
-                    }
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik (KIA)",
+                            ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
+                    eventList.add(event1);
 
-                    Log.d("Enter", "onCreate: Tes");
-                    Log.d(String.valueOf(tgl), "onCreate: tgl");
+//                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
 
-                    Calendar cal = Calendar.getInstance();
-                    Calendar alarm = Calendar.getInstance();
-                    cal.setTime(tgl);
+                    // Set Alarm
+                    break;
+                }
+                i++;
+            }
 
-                    Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                    Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                    Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                    Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
+            while(i <= 90){
+                Calendar startTime1 = Calendar.getInstance();
+                startTime1.add(Calendar.DATE, i*2);
+                Calendar endTime1 = Calendar.getInstance();
 
-//                    alarmActivity.setAlarmOn(cal);
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+                    endTime1 = startTime1;
+
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
+                            ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
+                    eventList.add(event1);
+//                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                }
+                i++;
+            }
+
+            while(i <= 90){
+                Calendar startTime1 = Calendar.getInstance();
+                startTime1.add(Calendar.DATE, i*2);
+                Calendar endTime1 = Calendar.getInstance();
+
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+
+                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+                    endTime1 = startTime1;
+
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
+                            ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
+                    eventList.add(event1);
+//                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+                }
+                i++;
+            }
+            /*
+             * Seminggu Sekali
+             */
+            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
+            while(i <= 90){
+                Calendar startTime1 = Calendar.getInstance();
+                startTime1.add(Calendar.DATE, i);
+                Calendar endTime1 = Calendar.getInstance();
+
+                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+                    endTime1 = startTime1;
+                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
+                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
+                    eventList.add(event1);
+
+                    // Insert SQLite
+//                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+
+                    // Set Alarm
+
                 }
                 i++;
             }

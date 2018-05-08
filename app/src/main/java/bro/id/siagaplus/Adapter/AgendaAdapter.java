@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import java.util.ArrayList;
-import java.util.Date;
 
 import bro.id.siagaplus.Model.Agenda;
 import bro.id.siagaplus.R;
@@ -36,8 +34,9 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
     @Override
     public void onBindViewHolder(AgendaAdapter.ViewHolder holder, int position) {
         String[] date = mListdata.get(position).getDate().split(" ");
-        holder.tgl.setText(date[2] + " " + date[1] + " "+date[5]);
-        holder.waktu.setText(date[3]);
+        String text = date[2] + " " + date[1] + " "+date[2];
+        holder.tgl.setText(text);
+        holder.waktu.setText(date[2]);
         holder.keterangan.setText(mListdata.get(position).getTitle());
     }
 

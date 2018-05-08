@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import bro.id.siagaplus.Activity.AgendaActivity;
 import bro.id.siagaplus.Activity.ArtikelActivity;
 import bro.id.siagaplus.Activity.CheckListActivity;
 import bro.id.siagaplus.Adapter.AgendaAdapter;
@@ -91,6 +92,16 @@ public class OneFragment extends Fragment {
         getAgenda();
         getChecklist();
         getArtikel();
+
+        rootView.findViewById(R.id.link_agenda_fragmentone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), AgendaActivity.class);
+                myBundle.putInt("id",0);
+                intent.putExtras(myBundle);
+                startActivity(intent);
+            }
+        });
 
         rootView.findViewById(R.id.link_checklist_fragmentone).setOnClickListener(new View.OnClickListener() {
             @Override

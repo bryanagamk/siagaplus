@@ -22,13 +22,11 @@
             android:orientation="vertical"
             android:gravity="center">
 
-
-
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo" />
+                android:src="@drawable/logo2" />
             <TextView
                 android:text="S I A G A  P L U S"
                 android:layout_width="match_parent"

@@ -25,6 +25,7 @@ import bro.id.siagaplus.R;
 
 public class AlarmActivity extends AppCompatActivity {
 
+    static AlarmActivity alarmActivity;
     AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private TimePicker alarmTimePicker;
@@ -38,6 +39,10 @@ public class AlarmActivity extends AppCompatActivity {
         return inst;
     }
 
+    public static AlarmActivity getInstance(){
+        return alarmActivity;
+    }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -48,6 +53,7 @@ public class AlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
+        alarmActivity = this;
         alarmTimePicker = (TimePicker) findViewById(R.id.alarmTimePicker);
         alarmTextView = (TextView) findViewById(R.id.alarmText);
 
