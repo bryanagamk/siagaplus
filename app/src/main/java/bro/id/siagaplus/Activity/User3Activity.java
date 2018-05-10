@@ -177,7 +177,7 @@ public class User3Activity extends AppCompatActivity
         eventList.add(event1);
 
         // Insert SQLite
-//        db.insertAgenda("Yuk, Sikat gigi setelah sarapan & sebelum tidur malam", String.valueOf(startTime1.getTime()));
+        db.insertAgenda("Yuk, Sikat gigi setelah sarapan & sebelum tidur malam", String.valueOf(startTime1.getTime()));
 
         // Set Alarm
     }
@@ -198,7 +198,7 @@ public class User3Activity extends AppCompatActivity
             eventList.add(event1);
 
             // Insert SQLite
-//            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
             // Set Alarm
 
@@ -222,7 +222,7 @@ public class User3Activity extends AppCompatActivity
             eventList.add(event1);
 
             // Insert SQLite
-//            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
             // Set Alarm
 
@@ -241,7 +241,7 @@ public class User3Activity extends AppCompatActivity
             eventList.add(event1);
 
             // Insert SQLite
-//            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
             // Set Alarm
         }
@@ -259,7 +259,7 @@ public class User3Activity extends AppCompatActivity
             eventList.add(event1);
 
             // Insert SQLite
-//            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
             // Set Alarm
 
@@ -277,7 +277,7 @@ public class User3Activity extends AppCompatActivity
             eventList.add(event1);
 
             // Insert SQLite
-//            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
             // Set Alarm
 
