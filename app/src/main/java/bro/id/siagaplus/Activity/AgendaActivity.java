@@ -94,7 +94,7 @@ public class AgendaActivity extends AppCompatActivity
             mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
         } else {
             List<CalendarEvent> eventList = new ArrayList<>();
-            eventList = agendakosong(eventList);
+            agendakosong(eventList);
 
             AgendaCalendarView mAgendaCalendarView = (AgendaCalendarView) findViewById(R.id.agenda_calendar_view);
 
@@ -103,7 +103,7 @@ public class AgendaActivity extends AppCompatActivity
 
     }
 
-    private List<CalendarEvent> agendakosong(List<CalendarEvent> eventList) {
+    private void agendakosong(List<CalendarEvent> eventList) {
 
         for (int i = 0; i < 100; i++){
             seharigigi(i, eventList);
@@ -111,10 +111,9 @@ public class AgendaActivity extends AppCompatActivity
             Log.d(TAG, "agendaagendaan: i : " + i);
         }
 
-        return eventList;
     }
 
-    private List<CalendarEvent> jadwalagenda(List<CalendarEvent> eventList){
+    private void jadwalagenda(List<CalendarEvent> eventList){
 
         Calendar mulaihamil = Calendar.getInstance();
         Calendar lahiran = Calendar.getInstance();
@@ -162,7 +161,6 @@ public class AgendaActivity extends AppCompatActivity
             Log.d(TAG, "jadwalagenda: trimester3 selesai");
         }
 
-        return eventList;
     }
 
     private void seharigigi(int i, List<CalendarEvent> eventList){
