@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,9 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
-import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 import com.github.tibolte.agendacalendarview.models.CalendarEvent;
 import com.github.tibolte.agendacalendarview.models.DayItem;
 
@@ -35,11 +32,13 @@ public class User3Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CalendarPickerController {
 
     private static final String LOG_TAG = "JAM" ;
+    private static final String TAG = "jadwalAgenda";
     public String username;
     private SharedPref sharedPref;
     Date date, tgl = null;
     DatabaseHelper db;
     AlarmActivity alarmActivity;
+    Calendar startTime1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,19 +83,13 @@ public class User3Activity extends AppCompatActivity
 
 
         if (date != null){
-            List<CalendarEvent> eventList = new ArrayList<>();
-            mockListPass(eventList);
+            List<CalendarEvent> eventLists = new ArrayList<>();
+            /*mockListPass(eventList);*/
+            jadwalagenda(eventLists);
 
-            AgendaCalendarView mAgendaCalendarView = (AgendaCalendarView) findViewById(R.id.agenda_calendar_view);
-
-            mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
         } else {
             List<CalendarEvent> eventList = new ArrayList<>();
-            mockList(eventList);
-
-            AgendaCalendarView mAgendaCalendarView = (AgendaCalendarView) findViewById(R.id.agenda_calendar_view);
-
-            mAgendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), this);
+            agendakosong(eventList);
         }
 
         btnOK.setOnClickListener(new View.OnClickListener() {
@@ -110,306 +103,189 @@ public class User3Activity extends AppCompatActivity
         });
     }
 
-    private void mockList(List<CalendarEvent> eventList) {
+    private List<CalendarEvent> agendakosong(List<CalendarEvent> eventList) {
 
-        int i = 0;
-        while(i <= 30){
-            Calendar startTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.DATE, i);
-            Calendar endTime1 = Calendar.getInstance();
+        for (int i = 0; i < (360); i++){
+            seharigigi(i, eventList);
+            seminggugigi(i, eventList);
+            Log.d(TAG, "agendaagendaan: i : " + i);
+        }
 
-            if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+        return eventList;
+    }
 
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-                BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
-                        ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
-                eventList.add(event1);
-                Log.d(String.valueOf(startTime1.getTime()), "mockList: startTime");
+    private void jadwalagenda(List<CalendarEvent> eventList){
 
-                // Set Alarm
-                long id = db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+        Calendar mulaihamil = Calendar.getInstance();
+        Calendar lahiran = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
 
-                String dbTgl = db.getAgenda(id).getDate();
+        mulaihamil.setTime(date);
+        lahiran = mulaihamil;
+        lahiran.add(Calendar.MONTH, 9);
+        long deff = lahiran.getTimeInMillis() - today.getTimeInMillis();
+        long sisaHari = deff / (24 * 60* 60 * 1000);
 
-                SimpleDateFormat format = new SimpleDateFormat("EE MMM dd hh:mm:ss z yyyy", Locale.US);
+        Log.d(TAG, "jadwalagenda: today " + today.getTime());
+        Log.d(TAG, "jadwalagenda: lahiran " + lahiran.getTime());
+        Log.d(TAG, "jadwalagenda: deff " + deff);
+        Log.d(TAG, "jadwalagenda: sisahari " + sisaHari);
 
-                try{
-                    tgl = format.parse(dbTgl);
-                    Log.d(String.valueOf(tgl), "onCreate: format.parse");
-                } catch (ParseException e){
-                    e.printStackTrace();
-                }
-
-                Log.d("Enter", "onCreate: Tes");
-                Log.d(String.valueOf(tgl), "onCreate: tgl");
-
-                Calendar cal = Calendar.getInstance();
-                Calendar alarm = Calendar.getInstance();
-                cal.setTime(tgl);
-
-                Log.d(String.valueOf(cal.getTime()), "onCreate: cal.getTime");
-                Log.d(String.valueOf(cal.get(Calendar.DAY_OF_YEAR)), "onCreate: cal.get(Calendar.DAY_OF_YEAR)");
-                Log.d(String.valueOf(cal.get(Calendar.HOUR_OF_DAY)), "onCreate: cal.get(Calendar.HOUR_OF_DAY)");
-                Log.d(String.valueOf(cal.get(Calendar.MINUTE)), "onCreate: cal.get(Calendar.MINUTE)");
-
-//                alarmActivity.setAlarmOn(cal);
+        if (sisaHari <= 90){
+            for (int i = 0; i < sisaHari; i++){
+                seminggubidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
             }
-            i++;
+            Log.d(TAG, "jadwalagenda: trimester3 selesai");
+        } else if (sisaHari > 90 && sisaHari <= 180){
+            for (int i = 0; i < sisaHari-90; i++ ){
+                duaminggugigi(i, eventList);
+                duaminggubidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
+            }
+            Log.d(TAG, "jadwalagenda: trimester2 selesai");
+            for (int i = 0; i < 90; i++){
+                seminggubidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
+            }
+            Log.d(TAG, "jadwalagenda: trimester3 selesai");
+        } else {
+            for (int i = 0; i < (sisaHari-180); i++){
+                seharigigi(i, eventList);
+                seminggugigi(i, eventList);
+                sebulanbidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
+            }
+            Log.d(TAG, "jadwalagenda: trimester1 selesai");
+            for (int i = 0; i < 90; i++ ){
+                duaminggugigi(i, eventList);
+                duaminggubidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
+            }
+            Log.d(TAG, "jadwalagenda: trimester2 selesai");
+            for (int i = 0; i < 90; i++){
+                seminggubidan(i, eventList);
+                Log.d(TAG, "jadwalagenda: i : " + i);
+            }
+            Log.d(TAG, "jadwalagenda: trimester3 selesai");
         }
     }
 
-    private void mockListPass(List<CalendarEvent> eventList) {
+    private void seharigigi(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "seharigigi: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.DATE, i);
+        Calendar endTime1 = Calendar.getInstance();
 
-        int i = 0;
-        Calendar mulaiHamil = Calendar.getInstance();
-        Calendar melahirkan = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();
-        mulaiHamil.setTime(date);
-        melahirkan = mulaiHamil;
-        melahirkan.add(Calendar.MONTH, 9);
-        long deff = melahirkan.getTimeInMillis() - today.getTimeInMillis();
-        long aDay = deff / (24 * 60* 60 * 1000);
-        long dayBef = 270 - aDay;
-        long jmlh;
-        /*Trimester 3*/
-        if (aDay <= 90){
-            /*
-            * Seminggu Sekali
-            */
-            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
-            while(i <= aDay){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
+        startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+        Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+        startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+        endTime1 = startTime1;
 
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+        // Insert SQLite
+        db.insertAgenda("Yuk, Sikat gigi setelah sarapan & sebelum tidur malam", String.valueOf(startTime1.getTime()));
 
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
-                    eventList.add(event1);
+        // Set Alarm
+    }
+    private void seminggugigi(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "seminggugigi: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.DATE, i);
+        Calendar endTime1 = Calendar.getInstance();
 
-                    // Insert SQLite
-                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+        if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
 
-                    // Set Alarm
+            startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+            Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+            startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+            endTime1 = startTime1;
 
-                }
-                i++;
-            }
-        } else if (aDay > 90 && aDay <= 180){
-            Log.d(String.valueOf(aDay), "mockListPass Trisemester 2");
+            // Insert SQLite
+            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
-            jmlh = 180 - dayBef;
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i*2);
-                Calendar endTime1 = Calendar.getInstance();
+            // Set Alarm
 
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+        }
+    }
+    private void seminggubidan(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "seminggubidan: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.DATE, i);
+        Calendar endTime1 = Calendar.getInstance();
 
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
+        if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
 
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
-                            ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
-                    eventList.add(event1);
-                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+            startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+            Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+            startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+            endTime1 = startTime1;
+            // Insert SQLite
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
-                    // Set Alarm
-                }
-                i++;
-            }
+            // Set Alarm
 
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i*2);
-                Calendar endTime1 = Calendar.getInstance();
+        }
+    }
+    private void duaminggugigi(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "duaminggugigi: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.DATE, i*2);
+        Calendar endTime1 = Calendar.getInstance();
 
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
+        if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
 
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
+            startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+            Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+            startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+            endTime1 = startTime1;
 
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
-                    eventList.add(event1);
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
+            // Insert SQLite
+            db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
 
-                    // Set Alarm
-                }
-                i++;
-            }
-            /*
-             * Seminggu Sekali
-             */
-            jmlh = 90;
-            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
+            // Set Alarm
 
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+        }
+    }
+    private void duaminggubidan(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "duaminggubidan: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.DATE, i*2);
+        Calendar endTime1 = Calendar.getInstance();
 
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
-                    eventList.add(event1);
+        if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
 
-                    // Insert SQLite
-                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
+            startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+            Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+            startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+            endTime1 = startTime1;
 
-                    // Set Alarm
+            // Insert SQLite
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
-                }
-                i++;
-            }
+            // Set Alarm
 
-        } else if (aDay > 180){
-            jmlh = 90 - dayBef;
-            /*Seminggu Sekali*/
-            Log.d(String.valueOf(aDay), "mockListPass Trisemester 1");
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
+        }
 
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+    }
+    private void sebulanbidan(int i, List<CalendarEvent> eventList){
+        Log.d(TAG, "sebulanbidan: ");
+        startTime1 = Calendar.getInstance();
+        startTime1.add(Calendar.MONTH, 1);
+        startTime1.add(Calendar.DATE, i);
+        Calendar endTime1 = Calendar.getInstance();
 
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
+        if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
 
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
-                            ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
-                    eventList.add(event1);
+            startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
+            Log.d(String.valueOf(startTime1.getTime()), "mockListPass: startTime");
+            startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
+            endTime1 = startTime1;
 
-                    db.insertAgenda("Periksa ke Dokter Gigi", String.valueOf(startTime1.getTime()));
+            // Insert SQLite
+            db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
 
-                    // Set Alarm
-                }
-                i++;
-            }
-            /*Setiap Hari Sekali*/
-            Log.d(String.valueOf(aDay), "mockListPass Trisemester 1");
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
+            // Set Alarm
 
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-
-                BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
-                        ContextCompat.getColor(this, R.color.colorPrimaryDark), startTime1, endTime1, true);
-                eventList.add(event1);
-
-                db.insertAgenda("Yuk sikat gigi setelah sarapan & tidur malam", String.valueOf(startTime1.getTime()));
-
-                i++;
-            }
-            /*Sebulan Sekali*/
-            while(i <= jmlh){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.MONTH, 1);
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
-
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik (KIA)",
-                            ContextCompat.getColor(this, R.color.agenda1), startTime1, endTime1, true);
-                    eventList.add(event1);
-
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
-
-                    // Set Alarm
-                    break;
-                }
-                i++;
-            }
-
-            while(i <= 90){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i*2);
-                Calendar endTime1 = Calendar.getInstance();
-
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Dokter Gigi", "Untuk periksa!", "RS / Klinik",
-                            ContextCompat.getColor(this, R.color.agenda4), startTime1, endTime1, true);
-                    eventList.add(event1);
-                    db.insertAgenda("Pergi ke Dokter Gigi", String.valueOf(startTime1.getTime()));
-
-                    // Set Alarm
-                }
-                i++;
-            }
-
-            while(i <= 90){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i*2);
-                Calendar endTime1 = Calendar.getInstance();
-
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Periksa ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda5), startTime1, endTime1, true);
-                    eventList.add(event1);
-                    db.insertAgenda("Periksa ke Bidan", String.valueOf(startTime1.getTime()));
-
-                    // Set Alarm
-                }
-                i++;
-            }
-            /*
-             * Seminggu Sekali
-             */
-            Log.d(String.valueOf(aDay), "mockListPass: Trisemester 3: aDay");
-            while(i <= 90){
-                Calendar startTime1 = Calendar.getInstance();
-                startTime1.add(Calendar.DATE, i);
-                Calendar endTime1 = Calendar.getInstance();
-
-                if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                    startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                    startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                    endTime1 = startTime1;
-                    BaseCalendarEvent event1 = new BaseCalendarEvent("Pergi ke Bidan", "Untuk periksa!", "Klinik(KIA)",
-                            ContextCompat.getColor(this, R.color.agenda2), startTime1, endTime1, true);
-                    eventList.add(event1);
-
-                    // Insert SQLite
-                    db.insertAgenda("Pergi ke Bidan", String.valueOf(startTime1.getTime()));
-
-                    // Set Alarm
-
-                }
-                i++;
-            }
         }
     }
 
