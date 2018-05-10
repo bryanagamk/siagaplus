@@ -34,7 +34,7 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
     @Override
     public void onBindViewHolder(AgendaAdapter.ViewHolder holder, int position) {
         String[] date = mListdata.get(position).getDate().split(" ");
-        String text = date[2] + " " + date[1] + " "+date[2];
+        String text = date[2] + " " + date[1] + " "+date[5];
         holder.tgl.setText(text);
 //        holder.tgl.setText(mListdata.get(position).getDate());
         holder.waktu.setText(date[2]);
