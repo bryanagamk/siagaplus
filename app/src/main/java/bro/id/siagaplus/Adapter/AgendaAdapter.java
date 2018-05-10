@@ -33,12 +33,19 @@ public class AgendaAdapter extends RecyclerView.Adapter<AgendaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(AgendaAdapter.ViewHolder holder, int position) {
-        String[] date = mListdata.get(position).getDate().split(" ");
-        String text = date[2] + " " + date[1] + " "+date[5];
-        holder.tgl.setText(text);
-//        holder.tgl.setText(mListdata.get(position).getDate());
-        holder.waktu.setText(date[2]);
+//        String[] date = mListdata.get(position).getDate().split(" ");
+//        String text = date[2] + " " + date[1] + " "+date[4];
+//        holder.tgl.setText(text);
+        holder.tgl.setText(mListdata.get(position).getDate());
+//        holder.waktu.setText(date[2]);
         holder.keterangan.setText(mListdata.get(position).getTitle());
+        if (holder.tgl.getText().equals("-")){
+            holder.tgl.setText(mListdata.get(position).getDate());
+        } else {
+            String[] date = mListdata.get(position).getDate().split(" ");
+            String text = date[2] + " " + date[1] + " "+date[5];
+            holder.tgl.setText(text);
+        }
     }
 
     @Override
