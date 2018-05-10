@@ -137,7 +137,7 @@ public class TwoFragment extends Fragment {
             Agenda agenda = new Agenda();
             agenda.setDate("no upcoming agenda");
             agenda.setTitle("-");
-            agenda.setId(0);
+            agenda.setId(1);
             mlistAgenda.add(agenda);
         } else if (rawdataAgenda.size() > 3){
             for (int i = 0;i < 3;i++){
