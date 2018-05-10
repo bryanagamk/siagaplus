@@ -13,12 +13,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import bro.id.siagaplus.Fragment.FiveFragment;
@@ -32,6 +30,7 @@ import bro.id.siagaplus.Utils.SharedPref;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "Tgl" ;
     public String username, name, tgl;
     private SharedPref sharedPref;
 
@@ -43,145 +42,6 @@ public class MainActivity extends AppCompatActivity
         sharedPref = new SharedPref(getApplicationContext());
 
         username = getIntent().getStringExtra("username");
-//        HashMap<String, String> user = sharedPref.getUserDetails();
-//        name = user.get(SharedPref.KEY_NAME);
-//        tgl = user.get(SharedPref.KEY_TGL);
-//        Toast.makeText(this, name + " & " + tgl, Toast.LENGTH_SHORT).show();
-//        Log.d(name,"crot");
-
-
-//        TextView mTextView = findViewById(R.id.navHeaderName);
-//        mTextView.setText(name);
-
-//        Calendar today = Calendar.getInstance();
-//        Log.d(String.valueOf(today.getTime()), "onCreate: today");
-
-/*        today.add(Calendar.MONTH, 1);
-        Log.d(String.valueOf(today.getTime()), "onCreate: 1 month");*/
-
-/*        today.add(Calendar.DATE, 14);
-        Log.d(String.valueOf(today.getTime()), "onCreate: today 2 minggu sekali");*/
-
-
-        /*
-        * Trimester 1
-        * Tiap Hari
-        * Gosok Gigi
-        * Senin - Seminggu Sekali - Kontrol Dokter Gigi
-        * 8, 15, 22, 29, 5
-        * Kamis - Sebulan Sekali - Kontrol Bidan
-        * 11
-        * */
-
-        Calendar mulaiHamil = Calendar.getInstance();
-        Calendar melahirkan = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();
-        mulaiHamil.set(Calendar.MONTH, 3);
-        mulaiHamil.set(Calendar.DAY_OF_YEAR, 4);
-        Log.d(String.valueOf(mulaiHamil.getTime()), "onCreate: mulaiHamil");
-        melahirkan = mulaiHamil;
-        melahirkan.add(Calendar.MONTH, 9);
-        Log.d(String.valueOf(melahirkan.getTime()), "onCreate: Melahirkan");
-
-        long deff = melahirkan.getTimeInMillis() - today.getTimeInMillis();
-        long aDay = deff / (24 * 60* 60 * 1000);
-        Log.d(String.valueOf(aDay), "onCreate: aDay");
-
-        long def = melahirkan.getTimeInMillis() - mulaiHamil.getTimeInMillis();
-        long hari = def / (24 * 60* 60 * 1000);
-        Log.d(String.valueOf(hari), "onCreate: jumlah melahirkan");
-
-        Calendar no1 = Calendar.getInstance();
-        no1.get(Calendar.DAY_OF_WEEK);
-
-        int a = 0;
-        /*Setiap Hari*/
-        Log.d(String.valueOf(no1.getTime()), "onCreate: Setiap hari");
-        while(a <= 20){
-            Calendar startTime1 = Calendar.getInstance();
-            Calendar endTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.DATE, a);
-            endTime1 = startTime1;
-            /*Log.d(String.valueOf(startTime1.getTime()), "onCreate: startTime1");
-            Log.d(String.valueOf(endTime1.getTime()), "onCreate: endtime1");*/
-            a++;
-        }
-        int b = 0;
-        /*Seminggu Sekali*/
-        Log.d(String.valueOf(no1.getTime()), "onCreate: Seminggu Sekali");
-        while(b <= 31){
-            Calendar startTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.DATE, b);
-            Calendar endTime1 = Calendar.getInstance();
-
-            if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-//                Log.d(String.valueOf(startTime1.getTime()), "onCreate: startTime1");
-//                Log.d(String.valueOf(endTime1.getTime()), "onCreate: endtime1");
-            }
-            b++;
-        }
-        int c = 0;
-        /*sebulan Sekali*/
-        Log.d(String.valueOf(no1.getTime()), "onCreate: sebulan Sekali");
-        while(c <= 31){
-            Calendar startTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.MONTH, 1);
-            startTime1.add(Calendar.DATE, c);
-            Calendar endTime1 = Calendar.getInstance();
-
-            if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY){
-
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-                Log.d(String.valueOf(startTime1.getTime()), "onCreate: startTime1");
-                Log.d(String.valueOf(endTime1.getTime()), "onCreate: endtime1");
-                break;
-            }
-            c++;
-        }
-        int d = 0;
-        /*Dua Minggu Sekali*/
-        Log.d(String.valueOf(no1.getTime()), "onCreate: Dua Minggu Sekali");
-        while(d <= 31){
-            Calendar startTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.DAY_OF_YEAR, d*2);
-            Calendar endTime1 = Calendar.getInstance();
-
-            if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-                Log.d(String.valueOf(startTime1.getTime()), "onCreate: startTime1");
-            }
-            d++;
-        }
-        int e = 0;
-        /*Seminggu Sekali*/
-        Log.d(String.valueOf(no1.getTime()), "onCreate: Seminggu Sekali");
-        while(e <= 31){
-            Calendar startTime1 = Calendar.getInstance();
-            startTime1.add(Calendar.DATE, e);
-            Calendar endTime1 = Calendar.getInstance();
-
-            if (startTime1.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-
-                startTime1.set(Calendar.MONTH,startTime1.get(Calendar.MONTH));
-                startTime1.set(Calendar.DATE,startTime1.get(Calendar.DATE));
-                endTime1 = startTime1;
-//                Log.d(String.valueOf(startTime1.getTime()), "onCreate: startTime1");
-//                Log.d(String.valueOf(endTime1.getTime()), "onCreate: endtime1");
-            }
-            e++;
-        }
-
-
-
 
         /**/
 
