@@ -1,5 +1,6 @@
 package bro.id.siagaplus.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -57,7 +58,7 @@ public class User11Activity extends AppCompatActivity
         HashMap<String, String> user = sharedPref.getUserDetails();
         String tgl = user.get(SharedPref.KEY_TGL);
 
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
 //        alarmActivity = (AlarmActivity) getApplicationContext();
 
