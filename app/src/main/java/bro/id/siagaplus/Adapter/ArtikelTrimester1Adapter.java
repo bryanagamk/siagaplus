@@ -18,9 +18,9 @@ import bro.id.siagaplus.R;
 public class ArtikelTrimester1Adapter extends RecyclerView.Adapter<ArtikelTrimester1Adapter.ViewHolder> {
 
     Context c;
-    private String [] menu={"Awal Tanda Kehamilan", "Makanan yang Harus Dihindari oleh Ibu Hamil", "Morning Sickness Atau Mual", "Radang Gusi (Gingivitis)", "Kesehatan Gigi dan Mulut pada Masa Kehamilan", "Nutrisi pada Ibu Hamil", "Pentingkah Olahraga Bagi Ibu Hamil?"};
-    private String [] nama={"awal_kehamilan.html", "makanan.html", "mual.html", "radang.html", "kesehatan.html", "nutrisi.html", "olahraga.html"};
-    private String [] gambar={"awal_kehamilan.jpg", "makanan.jpg", "mual.png", "radang.jpg", "kesehatan.jpg", "nutrisi.jpg", "olahraga.jpg"};
+    private String [] menu={"Awal Tanda Kehamilan", "Makanan yang Harus Dihindari oleh Ibu Hamil", "Morning Sickness Atau Mual", "Radang Gusi (Gingivitis)", "Kesehatan Gigi dan Mulut pada Masa Kehamilan", "Nutrisi pada Ibu Hamil", "Pentingkah Olahraga Bagi Ibu Hamil?", "Pre Eklampsia", "Karang Gigi menyebabkan Berat Badan Lahir Rendah", "Dok Saya Sedang Hamil, Apa Boleh Melakukan Perawatan Gigi?"};
+    private String [] nama={"awal_kehamilan.html", "makanan.html", "mual.html", "radang.html", "kesehatan.html", "nutrisi.html", "olahraga.html", "eklampsia.html", "karang.html", "dok.html"};
+    private String [] gambar={"awal_kehamilan.jpg", "makanan.jpg", "mual.png", "radang.jpg", "kesehatan.jpg", "nutrisi.jpg", "olahraga.jpg", "eklampsia1.jpg", "karang2.jpg", "dok.jpg"};
     private String url = "file:///android_asset/";
 
     public ArtikelTrimester1Adapter(Context con) {
